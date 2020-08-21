@@ -26,6 +26,7 @@ class Main extends PureComponent {
               <h2 className="map__title">г.Такойто этаж такой-то</h2>
             </div>
             <button className="map__pin map__pin--main" style={{left: `570px`, top: `375px`}}>
+              <img src="img/pins.svg" draggable="false" alt="Метка объявления" width="40" height="44"/>
               <svg viewBox="0 0 70 70" width="156" height="156" aria-label="Метка для поиска жилья">
                 <defs>
                   <path d="M35,35m-23,0a23,23 0 1,1 46,0a23,23 0 1,1 -46,0" id="tophalf" />
@@ -41,25 +42,25 @@ class Main extends PureComponent {
           {/* <!-- Фильтрация объявлений --> */}
           <div className="map__filters-container">
             <form action="#" className="map__filters" autoComplete="off">
-              <select name="type-space" id="type" className="map__filter">
-                <option value="any" selected>Любой</option>
+              <select name="type-space" id="type" className="map__filter" defaultValue="any">
+                <option value="any">Любой</option>
                 <option value="palace">Занято</option>
                 <option value="flat">Свободно</option>
               </select>
-              <select name="type-company" id="type-company" className="map__filter">
-                <option value="any" selected>Любая</option>
+              <select name="type-company" id="type-company" className="map__filter" defaultValue="Любая">
+                <option value="any">Любая</option>
                 <option value="pao">ПАО</option>
                 <option value="ao">АО</option>
                 <option value="contract">Подряд</option>
               </select>
-              <select name="type-departmens" id="type-departmens" className="map__filter">
-                <option value="any" selected>Любой</option>
+              <select name="type-departmens" id="type-departmens" className="map__filter" defaultValue="any">
+                <option value="any">Любой</option>
                 <option value="1">Операционный</option>
                 <option value="2">Разработчики</option>
                 <option value="3">Подрядчики</option>
               </select>
-              <select name="type-otdel" id="type-otdel" className="map__filter">
-                <option value="any" selected>Любой</option>
+              <select name="type-otdel" id="type-otdel" className="map__filter" defaultValue="any">
+                <option value="any">Любой</option>
                 <option value="2">АХО</option>
                 <option value="1">Разработка</option>
                 <option value="0">Тестирование</option>
@@ -113,46 +114,46 @@ class Main extends PureComponent {
             </fieldset>
             <fieldset className="ad-form__element">
               <label className="ad-form__label" htmlFor="type">Тип организации</label>
-              <select id="type" name="type">
-                <option value="pao" selected>ПАО</option>
+              <select id="type" name="type" defaultValue="pao">
+                <option value="pao">ПАО</option>
                 <option value="ao">АО</option>
                 <option value="contract">Подрядчики</option>
               </select>
             </fieldset>
             <fieldset className="ad-form__element">
               <label className="ad-form__label" htmlFor="departmens">Департамент</label>
-              <select id="departmens" name="departmens">
-                <option value="1" selected>Операционный</option>
+              <select id="departmens" name="departmens" defaultValue="1">
+                <option value="1">Операционный</option>
                 <option value="2">Разработчики</option>
                 <option value="3">Подрядчики</option>
               </select>
             </fieldset>
             <fieldset className="ad-form__element ad-form__element--time">
               <label className="ad-form__label" htmlFor="timein">Время работы</label>
-              <select id="timein" name="timein">
-                <option value="09:00" selected>Примерно с 9</option>
+              <select id="timein" name="timein" defaultValue="09:00">
+                <option value="09:00">Примерно с 9</option>
                 <option value="10:00">Примерно с 10</option>
                 <option value="11:00">Примерно с 11</option>
               </select>
-              <select id="timeout" name="timeout" title="Time to go out">
-                <option value="18:00" selected>Где то до 18</option>
+              <select id="timeout" name="timeout" title="Time to go out" defaultValue="18:00">
+                <option value="18:00">Где то до 18</option>
                 <option value="19:00">Где то до 13</option>
                 <option value="20:00">Где то до 14</option>
               </select>
             </fieldset>
             <fieldset className="ad-form__element">
               <label className="ad-form__label" htmlFor="otdel">Количество комнат</label>
-              <select id="otdel" name="otdel">
+              <select id="otdel" name="otdel" defaultValue="1">
                 <option value="0">АХО</option>
-                <option value="1" selected>Разработка</option>
+                <option value="1">Разработка</option>
                 <option value="2" >Подрядчики</option>
                 <option value="3">Тестирование</option>
               </select>
             </fieldset>
             <fieldset className="ad-form__element">
               <label className="ad-form__label" htmlFor="gender">Пол</label>
-              <select id="gender" name="gender">
-                <option value="1" selected>Мужской</option>
+              <select id="gender" name="gender" defaultValue="1">
+                <option value="1">Мужской</option>
                 <option value="0">Женский</option>
               </select>
             </fieldset>

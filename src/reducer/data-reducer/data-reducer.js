@@ -14,23 +14,23 @@ const ActionType = {
 
 // Объект начального состояния(state):
 const initialState = {
-  active: `choise`,
+  page: `choisePage`,
   office: null,
 };
 
 // Редьюсер. Функция-редьюсер принимает в качестве параметров текущий state и действие (action).
 // Результатом выполнение редьюсера станет новое состояние.
-const reducer = (state = initialState, action) => {
+const dataReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_OFFICE:
       return Object.assign({}, state, {
-        active: `officePages`,
+        page: `officePage`,
         office: action.office
       });
     case ActionType.GET_OFFERS:
       return Object.assign({}, state, {
         cardId: action.cardId,
-        active: `property`
+        page: `property`
       });
   }
   return state;
@@ -52,7 +52,7 @@ const ActionTown = {
 
 
 export {
-  reducer,
+  dataReducer,
   ActionType,
   ActionActive,
   ActionTown,

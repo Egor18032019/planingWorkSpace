@@ -4,8 +4,10 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {
   ActionActive, ActionTown
-} from "../../reducer.js";
+} from "../../reducer/data-reducer/data-reducer.js";
+import {getActiveOffice, getActivePage} from "../../reducer/selectors.js";
 import Main from "../Main/main.jsx";
+import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -14,24 +16,19 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {store, handlerClickOnTitle} = this.props;
+    const {activeOffice, handlerClickOnChoise, activePage} = this.props;
+    console.log(activePage === `officePage`);
 
-    if (store.active === `mainPages` || store.active === false) {
+    if (activePage === `officePage`) {
       return (
         <Main
-          onChoiseOfficeClick = {handlerClickOnTitle}
         />
       );
     } else {
       return (
-        <form action="#" className="map__filters" autoComplete="off">
-          <select name="choise-space" id="choise" className="map__choise">
-            <option value="ekb" selected>Екатеринбург</option>
-            <option value="rzn">Рязань</option>
-            <option value="smr">Самара</option>
-          </select>
-          <button> Загрузить выбранный город</button>
-        </form>
+        <ChoicePlaces
+          onChoiseOfficeClick={handlerClickOnChoise}
+        />
       );
     }
   }
@@ -58,29 +55,27 @@ class App extends PureComponent {
 }
 
 const mapDispatchToTitle = (dispatch) => ({
-  handlerClickOnTitle(place) {
+  handlerClickOnChoise(place) {
     console.log(`place:`, place);
-
     dispatch(ActionActive.activeState(place));
   },
-  onCityNameClick(city) {
-    dispatch(ActionTown.changeCity(city));
-  }
+  // onCityNameClick(city) {
+  //   dispatch(ActionTown.changeCity(city));
+  // }
 });
 
 const mapStateToProps = (store) => {
-  console.log(`store:`, store);
+  console.log(`store:`, store.DATA);
   return {
-    store
+    activeOffice: getActiveOffice(store),
+    activePage: getActivePage(store),
   };
 };
 
 App.propTypes = {
-  store: PropTypes.shape({
-    active: PropTypes.string.isRequired,
-    office: PropTypes.number,
-  }).isRequired,
-  handlerClickOnTitle: PropTypes.func.isRequired,
+  activeOffice: PropTypes.string,
+  activePage: PropTypes.string.isRequired,
+  handlerClickOnChoise: PropTypes.func.isRequired,
 };
 
 export {App};

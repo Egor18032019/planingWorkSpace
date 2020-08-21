@@ -376,35 +376,35 @@
     border-radius: 3px;
   }
 
-  .map__feature--wifi {
+  .map__feature--notebook {
     background-position: 2px 5px;
   }
 
-  .map__checkbox:checked + .map__feature--wifi {
+  .map__checkbox:checked + .map__feature--notebook {
     background-position: 2px -172px;
   }
 
-  .map__feature--dishwasher {
+  .map__feature--apllebook {
     background-position: 2px -25px;
   }
 
-  .map__checkbox:checked + .map__feature--dishwasher {
+  .map__checkbox:checked + .map__feature--apllebook {
     background-position: 2px -202px;
   }
 
-  .map__feature--parking {
+  .map__feature--sistemnik {
     background-position: 3px -55px;
   }
 
-  .map__checkbox:checked + .map__feature--parking {
+  .map__checkbox:checked + .map__feature--sistemnik {
     background-position: 2px -232px;
   }
 
-  .map__feature--washer {
+  .map__feature--telephone {
     background-position: 2px -85px;
   }
 
-  .map__checkbox:checked + .map__feature--washer {
+  .map__checkbox:checked + .map__feature--telephone {
     background-position: 2px -262px;
   }
 
