@@ -5,10 +5,11 @@ import PropTypes from "prop-types";
 class Main extends PureComponent {
   constructor(props) {
     super(props);
-
+    this.onClickForActive = this.onClickForActive.bind(this);
   }
 
   render() {
+    const {activeOffice, isActive} = this.props;
     return (
       <main>
         <div className="promo">
@@ -18,14 +19,15 @@ class Main extends PureComponent {
         </div>
 
         {/* <!-- Карта объявлений --> */}
-        <section className="map map--faded">
+        <section className={`map ${!isActive ? `map--faded` : ``}`}>
 
           {/* <!-- Метки объявлений --> */}
           <div className="map__pins">
             <div className="map__overlay">
-              <h2 className="map__title">г.Такойто этаж такой-то</h2>
+              <h2 className="map__title">г.{activeOffice} офис №</h2>
             </div>
-            <button className="map__pin map__pin--main" style={{left: `570px`, top: `375px`}}>
+            <button className="map__pin map__pin--main" style={{left: `570px`, top: `375px`}}
+              onClick={this.onClickForActive}>
               <img src="img/pins.svg" draggable="false" alt="Метка объявления" width="40" height="44"/>
               <svg viewBox="0 0 70 70" width="156" height="156" aria-label="Метка для поиска жилья">
                 <defs>
@@ -196,10 +198,20 @@ class Main extends PureComponent {
       </main>
     );
   }
-
-  handelChange() {
-    console.log();
+  componentDidMount() {
+    console.log(`componentDidMount`);
+    document.addEventListener(`click`, this.onClickForActive, true);
   }
+  componentWillUnmount() {
+    console.log(`componentWillUnmount`);
+    document.removeEventListener(`click`, this.onClickForActive, true);
+  }
+  onClickForActive() {
+    const {onClickActive} = this.props;
+    onClickActive();
+    document.removeEventListener(`click`, this.onClickForActive.bind(this));
+  }
+
   handelSubmit(event) {
     event.preventDefault();
 
@@ -207,6 +219,9 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
+  activeOffice: PropTypes.string,
+  isActive: PropTypes.bool.isRequired,
+  onClickActive: PropTypes.func,
 };
 
 export default Main;

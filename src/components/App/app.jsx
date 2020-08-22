@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {
-  ActionActive, ActionTown
+  ActionActive
 } from "../../reducer/data-reducer/data-reducer.js";
 import {getActiveOffice, getActivePage} from "../../reducer/selectors.js";
 import Main from "../Main/main.jsx";
+import withMain from "../../hoc/whit-main/whit-main.js";
+const MainWrapped = withMain(Main);
 import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
 
 class App extends PureComponent {
@@ -17,11 +19,10 @@ class App extends PureComponent {
 
   _renderApp() {
     const {activeOffice, handlerClickOnChoise, activePage} = this.props;
-    console.log(activePage === `officePage`);
-
     if (activePage === `officePage`) {
       return (
-        <Main
+        <MainWrapped
+          activeOffice={activeOffice}
         />
       );
     } else {
@@ -34,7 +35,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {state} = this.props;
+    const {activeOffice} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -42,7 +43,8 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/property">
-            <Main
+            <MainWrapped
+              activeOffice={activeOffice}
             />
           </Route>
           <Route exact path="/login">
