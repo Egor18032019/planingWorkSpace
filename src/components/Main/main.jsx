@@ -6,6 +6,7 @@ class Main extends PureComponent {
   constructor(props) {
     super(props);
     this.onClickForActive = this.onClickForActive.bind(this);
+    this.onMovePoint = this.onMovePoint.bind(this);
   }
 
   render() {
@@ -14,7 +15,7 @@ class Main extends PureComponent {
       <main>
         <div className="promo">
           <h1 className="promo__title visually-hidden">Планировщик рабочих мест</h1>
-          <img src="" alt="Планировщик рабочих мест" width="215" height="45"/>
+          <img src="" alt="Планировщик рабочих мест" width="215" height="45" />
           {/* <!-- TODO: сделать картинку --> */}
         </div>
 
@@ -27,8 +28,8 @@ class Main extends PureComponent {
               <h2 className="map__title">г.{activeOffice} офис №</h2>
             </div>
             <button className="map__pin map__pin--main" style={{left: `570px`, top: `375px`}}
-              onClick={this.onClickForActive}>
-              <img src="img/pins.svg" draggable="false" alt="Метка объявления" width="40" height="44"/>
+              onClick={!isActive ? this.onClickForActive : this.onMovePoint}>
+              <img src="img/pins.svg" draggable="false" alt="Метка объявления" width="40" height="44" />
               <svg viewBox="0 0 70 70" width="156" height="156" aria-label="Метка для поиска жилья">
                 <defs>
                   <path d="M35,35m-23,0a23,23 0 1,1 46,0a23,23 0 1,1 -46,0" id="tophalf" />
@@ -70,16 +71,16 @@ class Main extends PureComponent {
 
               <fieldset id="work-features" className="map__features">
                 <input type="checkbox" name="features" value="notebook" id="filter-notebook"
-                  className="map__checkbox visually-hidden"/>
+                  className="map__checkbox visually-hidden" />
                 <label className="map__feature map__feature--notebook" htmlFor="filter-notebook">Ноутбук</label>
                 <input type="checkbox" name="features" value="apllebook" id="filter-apllebook"
-                  className="map__checkbox visually-hidden"/>
+                  className="map__checkbox visually-hidden" />
                 <label className="map__feature map__feature--apllebook" htmlFor="filter-apllebook">Макбук</label>
                 <input type="checkbox" name="features" value="sistemnik" id="filter-sistemnik"
-                  className="map__checkbox visually-hidden"/>
+                  className="map__checkbox visually-hidden" />
                 <label className="map__feature map__feature--sistemnik" htmlFor="filter-sistemnik">Системный блок</label>
                 <input type="checkbox" name="features" value="telephone" id="filter-telephone"
-                  className="map__checkbox visually-hidden"/>
+                  className="map__checkbox visually-hidden" />
                 <label className="map__feature map__feature--telephone" htmlFor="filter-telephone">Рабочий телефон</label>
               </fieldset>
             </form>
@@ -95,10 +96,10 @@ class Main extends PureComponent {
               <legend className="ad-form-header__title">Аватарка сотрудника</legend>
               <div className="ad-form-header__upload">
                 <div className="ad-form-header__preview">
-                  <img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44"/>
+                  <img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44" />
                 </div>
                 <div className="ad-form__field">
-                  <input type="file" id="avatar" name="avatar" className="ad-form-header__input visually-hidden"/>
+                  <input type="file" id="avatar" name="avatar" className="ad-form-header__input visually-hidden" />
                   <label className="ad-form-header__drop-zone" htmlFor="avatar">Загрузить фото...</label>
                 </div>
                 <p className="ad-form-header__info">Заполните все обязательные поля.
@@ -108,11 +109,11 @@ class Main extends PureComponent {
             <fieldset className="ad-form__element ad-form__element--wide">
               <label className="ad-form__label" htmlFor="title">Заголовок</label>
               <input id="title" name="title" type="text" maxLength="100" minLength="30" required
-                placeholder="Тут кто то новенький"/>
+                placeholder="Тут кто то новенький" />
             </fieldset>
             <fieldset className="ad-form__element ad-form__element--wide">
               <label className="ad-form__label" htmlFor="address">Координаты</label>
-              <input id="address" name="address" type="text"/>
+              <input id="address" name="address" type="text" />
             </fieldset>
             <fieldset className="ad-form__element">
               <label className="ad-form__label" htmlFor="type">Тип организации</label>
@@ -162,16 +163,16 @@ class Main extends PureComponent {
             <fieldset className="ad-form__element ad-form__element--wide features">
               <legend>Оборудование</legend>
               <input type="checkbox" name="features" value="notebook" id="feature-notebook"
-                className="feature__checkbox visually-hidden"/>
+                className="feature__checkbox visually-hidden" />
               <label className="feature feature--notebook" htmlFor="feature-notebook">Ноутбук</label>
               <input type="checkbox" name="features" value="apllebook" id="feature-apllebook"
-                className="feature__checkbox visually-hidden"/>
+                className="feature__checkbox visually-hidden" />
               <label className="feature feature--apllebook" htmlFor="feature-apllebook">МакБук</label>
               <input type="checkbox" name="features" value="sistemnik" id="feature-sistemnik"
-                className="feature__checkbox visually-hidden"/>
+                className="feature__checkbox visually-hidden" />
               <label className="feature feature--sistemnik" htmlFor="feature-sistemnik">Системный блок</label>
               <input type="checkbox" name="features" value="telephone" id="feature-telephone"
-                className="feature__checkbox visually-hidden"/>
+                className="feature__checkbox visually-hidden" />
               <label className="feature feature--telephone" htmlFor="feature-telephone">Стационарный телефон</label>
             </fieldset>
             <fieldset className="ad-form__element ad-form__element--wide">
@@ -183,7 +184,7 @@ class Main extends PureComponent {
               <label className="ad-form__label">Фотография рабочего места</label>
               <div className="ad-form__photo-container">
                 <div className="ad-form__upload">
-                  <input type="file" id="images" name="images" className="ad-form__input visually-hidden"/>
+                  <input type="file" id="images" name="images" className="ad-form__input visually-hidden" />
                   <label htmlFor="images" className="ad-form__drop-zone">Загрузить фото...</label>
                 </div>
                 <div className="ad-form__photo"></div>
@@ -200,21 +201,21 @@ class Main extends PureComponent {
   }
   componentDidMount() {
     console.log(`componentDidMount`);
-    document.addEventListener(`click`, this.onClickForActive, true);
   }
   componentWillUnmount() {
     console.log(`componentWillUnmount`);
-    document.removeEventListener(`click`, this.onClickForActive, true);
   }
   onClickForActive() {
     const {onClickActive} = this.props;
     onClickActive();
-    document.removeEventListener(`click`, this.onClickForActive.bind(this));
   }
 
   handelSubmit(event) {
     event.preventDefault();
-
+  }
+  onMovePoint() {
+    console.log(`onMovePoint`);
+    return false;
   }
 }
 
