@@ -1,5 +1,8 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {ActionPlace} from "../../reducer/data-reducer/data-reducer.js";
 
 class AdForm extends PureComponent {
   constructor(props) {
@@ -7,15 +10,41 @@ class AdForm extends PureComponent {
     this.formRef = createRef();
     this.titledRef = createRef();
     this.iconRef = createRef();
+    this.coordinateRef = createRef();
+    this.type = createRef();
+    this.departmens = createRef();
+    this.timein = createRef();
+    this.timeout = createRef();
+    this.otdel = createRef();
+    this.gender = createRef();
+    this.features = createRef();
+    this.description = createRef();
+    this.photo = createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
   handleSubmit(evt) {
+    const {handlerSubmitForAdd} = this.props;
     evt.preventDefault();
-    console.log(this.formRef);
-    console.log(this.titledRef);
-    console.log(this.iconRef);
+    handlerSubmitForAdd({
+      titledRef: this.titledRef.current.value,
+      iconRef: this.iconRef.current.value,
+      coordinateRef: this.coordinateRef.current.value,
+      type: this.type.current.value,
+      departmens: this.departmens.current.value,
+      timein: this.timein.current.value,
+      timeout: this.timeout.current.value,
+      otdel: this.otdel.current.value,
+      gender: this.gender.current.value,
+      features: this.features.current.value,
+      description: this.description.current.value,
+      photo: this.photo.current.value,
+    });
+    // console.log(this.description.current.value);
+    // console.log(this.iconRef.current.value);
+    // // console.log(this.iconRef.current.files[0].name);
+    // console.log(this.iconRef.current.files[0]);
   }
 
   render() {
@@ -46,11 +75,11 @@ class AdForm extends PureComponent {
         <fieldset className="ad-form__element ad-form__element--wide">
           {/* TODO: нужно ли тут отображать координаты ? или лучше следующее по номеру рабочее место ? */}
           <label className="ad-form__label" htmlFor="address">Координаты</label>
-          <input id="address" name="address" type="text" />
+          <input id="address" name="address" type="text" ref={this.coordinateRef} />
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="type">Тип организации</label>
-          <select id="type" name="type" defaultValue="pao">
+          <select id="type" name="type" defaultValue="pao" ref={this.type}>
             <option value="pao">ПАО</option>
             <option value="ao">АО</option>
             <option value="contract">Подрядчики</option>
@@ -58,7 +87,7 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="departmens">Департамент</label>
-          <select id="departmens" name="departmens" defaultValue="1">
+          <select id="departmens" name="departmens" defaultValue="1" ref={this.departmens}>
             <option value="1">Операционный</option>
             <option value="2">Разработчики</option>
             <option value="3">Подрядчики</option>
@@ -66,20 +95,20 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--time">
           <label className="ad-form__label" htmlFor="timein">Время работы</label>
-          <select id="timein" name="timein" defaultValue="09:00">
+          <select id="timein" name="timein" defaultValue="09:00" ref={this.timein}>
             <option value="09:00">Примерно с 9</option>
             <option value="10:00">Примерно с 10</option>
             <option value="11:00">Примерно с 11</option>
           </select>
-          <select id="timeout" name="timeout" title="Time to go out" defaultValue="18:00">
+          <select id="timeout" name="timeout" title="Time to go out" defaultValue="18:00" ref={this.timeout}>
             <option value="18:00">Где то до 18</option>
             <option value="19:00">Где то до 13</option>
             <option value="20:00">Где то до 14</option>
           </select>
         </fieldset>
         <fieldset className="ad-form__element">
-          <label className="ad-form__label" htmlFor="otdel">Количество комнат</label>
-          <select id="otdel" name="otdel" defaultValue="1">
+          <label className="ad-form__label" htmlFor="otdel">Отдел</label>
+          <select id="otdel" name="otdel" defaultValue="1" ref={this.otdel}>
             <option value="0">АХО</option>
             <option value="1">Разработка</option>
             <option value="2" >Подрядчики</option>
@@ -88,12 +117,12 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="gender">Пол</label>
-          <select id="gender" name="gender" defaultValue="1">
+          <select id="gender" name="gender" defaultValue="1" ref={this.gender}>
             <option value="1">Мужской</option>
             <option value="0">Женский</option>
           </select>
         </fieldset>
-        <fieldset className="ad-form__element ad-form__element--wide features">
+        <fieldset className="ad-form__element ad-form__element--wide features" ref={this.features}>
           <legend>Оборудование</legend>
           <input type="checkbox" name="features" value="notebook" id="feature-notebook"
             className="feature__checkbox visually-hidden" />
@@ -111,13 +140,13 @@ class AdForm extends PureComponent {
         <fieldset className="ad-form__element ad-form__element--wide">
           <label className="ad-form__label" htmlFor="description">Описание (не обязательно)</label>
           <textarea id="description" name="description"
-            placeholder="Здесь расскажите о том кто тут"></textarea>
+            placeholder="Здесь расскажите о том кто тут" ref={this.description}></textarea>
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--wide">
           <label className="ad-form__label">Фотография рабочего места</label>
           <div className="ad-form__photo-container">
             <div className="ad-form__upload">
-              <input type="file" id="images" name="images" className="ad-form__input visually-hidden" />
+              <input type="file" id="images" name="images" className="ad-form__input visually-hidden" ref={this.photo} />
               <label htmlFor="images" className="ad-form__drop-zone">Загрузить фото...</label>
             </div>
             <div className="ad-form__photo"></div>
@@ -133,8 +162,26 @@ class AdForm extends PureComponent {
   }
 }
 
-AdForm.propTypes = {
-  isActive: PropTypes.bool.isRequired,
+const mapDispatchToTitle = (dispatch) => ({
+  handlerSubmitForAdd(place) {
+    console.log(`place:`, place);
+    dispatch(ActionPlace.addPlace(place));
+  },
+
+});
+
+const mapStateToProps = (store) => {
+  console.log(`places:`, store.DATA.places);
+  return {
+
+  };
 };
 
-export default AdForm;
+
+AdForm.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  handlerSubmitForAdd: PropTypes.func,
+};
+
+export {AdForm};
+export default connect(mapStateToProps, mapDispatchToTitle)(AdForm); // первым стате а вторым фдиспатчеры

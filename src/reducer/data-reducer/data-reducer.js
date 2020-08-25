@@ -4,7 +4,7 @@
 
 // Определяем действия(actions)
 const ActionType = {
-  CHANGE_OFFICE: `CHANGE_OFFICE`,
+  ADD_PLACE: `CHANGE_OFFICE`,
   GET_OFFERS: `GET_OFFERS`,
 };
 
@@ -16,21 +16,23 @@ const ActionType = {
 const initialState = {
   page: `choisePage`,
   office: null,
+  places: [],
 };
 
 // Редьюсер. Функция-редьюсер принимает в качестве параметров текущий state и действие (action).
 // Результатом выполнение редьюсера станет новое состояние.
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_OFFICE:
+    case ActionType.GET_OFFERS:
       return Object.assign({}, state, {
         page: `officePage`,
         office: action.office
       });
-    case ActionType.GET_OFFERS:
+    case ActionType.ADD_PLACE:
+      let statePlaceRewrite = [...state.places];
+      statePlaceRewrite.push(action.payload);
       return Object.assign({}, state, {
-        cardId: action.cardId,
-        page: `property`
+        places: statePlaceRewrite
       });
   }
   return state;
@@ -38,15 +40,15 @@ const dataReducer = (state = initialState, action) => {
 
 const ActionActive = {
   activeState: (place) => ({
-    type: ActionType.CHANGE_OFFICE, // обязательно поле type
+    type: ActionType.GET_OFFERS, // обязательно поле type
     office: place
   })
 };
 
-const ActionTown = {
-  changeCity: (city) => ({
-    type: ActionType.CHANGE_OFFICE,
-    payload: city,
+const ActionPlace = {
+  addPlace: (place) => ({
+    type: ActionType.ADD_PLACE,
+    payload: place,
   }),
 };
 
@@ -55,5 +57,5 @@ export {
   dataReducer,
   ActionType,
   ActionActive,
-  ActionTown,
+  ActionPlace,
 };

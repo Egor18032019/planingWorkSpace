@@ -61,9 +61,7 @@ const mapDispatchToTitle = (dispatch) => ({
     console.log(`place:`, place);
     dispatch(ActionActive.activeState(place));
   },
-  // onCityNameClick(city) {
-  //   dispatch(ActionTown.changeCity(city));
-  // }
+
 });
 
 const mapStateToProps = (store) => {
