@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-
-
+import MapPin from "../map-pin/map_pin.jsx";
+import AdForm from "../ad-form/ad_form.jsx";
 class Main extends PureComponent {
   constructor(props) {
     super(props);
@@ -10,6 +10,7 @@ class Main extends PureComponent {
   }
 
   render() {
+
     const {activeOffice, isActive} = this.props;
     return (
       <main>
@@ -27,19 +28,11 @@ class Main extends PureComponent {
             <div className="map__overlay">
               <h2 className="map__title">г.{activeOffice} офис №</h2>
             </div>
-            <button className="map__pin map__pin--main" style={{left: `570px`, top: `375px`}}
-              onClick={!isActive ? this.onClickForActive : this.onMovePoint}>
-              <img src="img/pins.svg" draggable="false" alt="Метка объявления" width="40" height="44" />
-              <svg viewBox="0 0 70 70" width="156" height="156" aria-label="Метка для поиска жилья">
-                <defs>
-                  <path d="M35,35m-23,0a23,23 0 1,1 46,0a23,23 0 1,1 -46,0" id="tophalf" />
-                </defs>
-                <ellipse cx="35" cy="35" rx="35" ry="35" fill="rgba(255, 86, 53, 0.7)" />
-                <text>
-                  <textPath xlinkHref="#tophalf" startOffset="0">Для запуска нажми меня</textPath>
-                </text>
-              </svg>
-            </button>
+            <MapPin
+              isActive={isActive}
+              onClickForActive={this.onClickForActive}
+              onMovePoint={this.onMovePoint}
+            />
           </div>
 
           {/* <!-- Фильтрация объявлений --> */}
@@ -90,111 +83,9 @@ class Main extends PureComponent {
         {/* <!-- Форма объявления --> */}
         <section className="notice">
           <h2 className="notice__title">Новое р.м.</h2>
-          <form className="ad-form ad-form--disabled" method="post" encType="multipart/form-data"
-            action="https://js.dump.academy/keksobooking" autoComplete="off">
-            <fieldset className="ad-form-header">
-              <legend className="ad-form-header__title">Аватарка сотрудника</legend>
-              <div className="ad-form-header__upload">
-                <div className="ad-form-header__preview">
-                  <img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44" />
-                </div>
-                <div className="ad-form__field">
-                  <input type="file" id="avatar" name="avatar" className="ad-form-header__input visually-hidden" />
-                  <label className="ad-form-header__drop-zone" htmlFor="avatar">Загрузить фото...</label>
-                </div>
-                <p className="ad-form-header__info">Заполните все обязательные поля.
-                Получившееся объявление должно давать коллегам полное представление о новом сотруднике</p>
-              </div>
-            </fieldset>
-            <fieldset className="ad-form__element ad-form__element--wide">
-              <label className="ad-form__label" htmlFor="title">Заголовок</label>
-              <input id="title" name="title" type="text" maxLength="100" minLength="30" required
-                placeholder="Тут кто то новенький" />
-            </fieldset>
-            <fieldset className="ad-form__element ad-form__element--wide">
-              <label className="ad-form__label" htmlFor="address">Координаты</label>
-              <input id="address" name="address" type="text" />
-            </fieldset>
-            <fieldset className="ad-form__element">
-              <label className="ad-form__label" htmlFor="type">Тип организации</label>
-              <select id="type" name="type" defaultValue="pao">
-                <option value="pao">ПАО</option>
-                <option value="ao">АО</option>
-                <option value="contract">Подрядчики</option>
-              </select>
-            </fieldset>
-            <fieldset className="ad-form__element">
-              <label className="ad-form__label" htmlFor="departmens">Департамент</label>
-              <select id="departmens" name="departmens" defaultValue="1">
-                <option value="1">Операционный</option>
-                <option value="2">Разработчики</option>
-                <option value="3">Подрядчики</option>
-              </select>
-            </fieldset>
-            <fieldset className="ad-form__element ad-form__element--time">
-              <label className="ad-form__label" htmlFor="timein">Время работы</label>
-              <select id="timein" name="timein" defaultValue="09:00">
-                <option value="09:00">Примерно с 9</option>
-                <option value="10:00">Примерно с 10</option>
-                <option value="11:00">Примерно с 11</option>
-              </select>
-              <select id="timeout" name="timeout" title="Time to go out" defaultValue="18:00">
-                <option value="18:00">Где то до 18</option>
-                <option value="19:00">Где то до 13</option>
-                <option value="20:00">Где то до 14</option>
-              </select>
-            </fieldset>
-            <fieldset className="ad-form__element">
-              <label className="ad-form__label" htmlFor="otdel">Количество комнат</label>
-              <select id="otdel" name="otdel" defaultValue="1">
-                <option value="0">АХО</option>
-                <option value="1">Разработка</option>
-                <option value="2" >Подрядчики</option>
-                <option value="3">Тестирование</option>
-              </select>
-            </fieldset>
-            <fieldset className="ad-form__element">
-              <label className="ad-form__label" htmlFor="gender">Пол</label>
-              <select id="gender" name="gender" defaultValue="1">
-                <option value="1">Мужской</option>
-                <option value="0">Женский</option>
-              </select>
-            </fieldset>
-            <fieldset className="ad-form__element ad-form__element--wide features">
-              <legend>Оборудование</legend>
-              <input type="checkbox" name="features" value="notebook" id="feature-notebook"
-                className="feature__checkbox visually-hidden" />
-              <label className="feature feature--notebook" htmlFor="feature-notebook">Ноутбук</label>
-              <input type="checkbox" name="features" value="apllebook" id="feature-apllebook"
-                className="feature__checkbox visually-hidden" />
-              <label className="feature feature--apllebook" htmlFor="feature-apllebook">МакБук</label>
-              <input type="checkbox" name="features" value="sistemnik" id="feature-sistemnik"
-                className="feature__checkbox visually-hidden" />
-              <label className="feature feature--sistemnik" htmlFor="feature-sistemnik">Системный блок</label>
-              <input type="checkbox" name="features" value="telephone" id="feature-telephone"
-                className="feature__checkbox visually-hidden" />
-              <label className="feature feature--telephone" htmlFor="feature-telephone">Стационарный телефон</label>
-            </fieldset>
-            <fieldset className="ad-form__element ad-form__element--wide">
-              <label className="ad-form__label" htmlFor="description">Описание (не обязательно)</label>
-              <textarea id="description" name="description"
-                placeholder="Здесь расскажите о том кто тут"></textarea>
-            </fieldset>
-            <fieldset className="ad-form__element ad-form__element--wide">
-              <label className="ad-form__label">Фотография рабочего места</label>
-              <div className="ad-form__photo-container">
-                <div className="ad-form__upload">
-                  <input type="file" id="images" name="images" className="ad-form__input visually-hidden" />
-                  <label htmlFor="images" className="ad-form__drop-zone">Загрузить фото...</label>
-                </div>
-                <div className="ad-form__photo"></div>
-              </div>
-            </fieldset>
-            <fieldset className="ad-form__element ad-form__element--submit">
-              <button className="ad-form__submit" type="submit">Опубликовать</button>
-            или <button className="ad-form__reset" type="reset">очистить</button>
-            </fieldset>
-          </form>
+          <AdForm
+            isActive={isActive}
+          />
         </section>
       </main>
     );
@@ -214,8 +105,8 @@ class Main extends PureComponent {
     event.preventDefault();
   }
   onMovePoint() {
+    // DragAndDrop();
     console.log(`onMovePoint`);
-    return false;
   }
 }
 
