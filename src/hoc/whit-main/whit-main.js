@@ -7,23 +7,34 @@ const withMain = (Component) => {
 
       this.state = {
         isActive: false,
+        pinMainCoordinate: ``,
+        coordinateY: ``,
+        coordinateX: ``,
       };
     }
     render() {
-      const {isActive} = this.state;
+      const {isActive, pinMainCoordinate, coordinateY, coordinateX} = this.state;
       return (
         <Component
           {...this.props}
           isActive={isActive}
-          // onCardMouseEnter={(place)=>{
-          //   this.setState({activeOffer: place});
-          // }}
-          // onCardMouseOut={()=>{
-          //   this.setState({activeOffer: null});
-          // }}
+          coordinateY={coordinateY}
+          coordinateX={coordinateX}
+          pinMainCoordinate={pinMainCoordinate}
+
+          onChangeCoordinate={(coordinate)=>{
+            this.setState({pinMainCoordinate: coordinate});
+          }}
+          onChangeCoordinateX={(coordinate)=>{
+            this.setState({coordinateX: coordinate});
+          }}
+
+          onChangeCoordinateY={(coordinate)=>{
+            this.setState({coordinateY: coordinate});
+          }}
+
           onClickActive={()=>{
             this.setState({isActive: true});
-            console.log(`najal na button`, isActive);
           }}
         >
         </Component>

@@ -1,17 +1,18 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MapPin from "../map-pin/map_pin.jsx";
+import Pins from "../pins/pins.jsx";
 import AdForm from "../ad-form/ad_form.jsx";
 class Main extends PureComponent {
   constructor(props) {
     super(props);
     this.onClickForActive = this.onClickForActive.bind(this);
-    this.onMovePoint = this.onMovePoint.bind(this);
   }
 
   render() {
 
-    const {activeOffice, isActive} = this.props;
+    const {activeOffice, isActive, onChangeCoordinate, pinMainCoordinate, onChangeCoordinateY,
+      onChangeCoordinateX, coordinateX, coordinateY} = this.props;
     return (
       <main>
         <div className="promo">
@@ -25,6 +26,7 @@ class Main extends PureComponent {
 
           {/* <!-- Метки объявлений --> */}
           <div className="map__pins">
+            <Pins />
             <div className="map__overlay">
               <h2 className="map__title">г.{activeOffice} офис №</h2>
             </div>
@@ -32,6 +34,10 @@ class Main extends PureComponent {
               isActive={isActive}
               onClickForActive={this.onClickForActive}
               onMovePoint={this.onMovePoint}
+              pinMainCoordinate={pinMainCoordinate}
+              onChangeCoordinate={onChangeCoordinate}
+              onChangeCoordinateX={onChangeCoordinateX}
+              onChangeCoordinateY={onChangeCoordinateY}
             />
           </div>
 
@@ -85,6 +91,9 @@ class Main extends PureComponent {
           <h2 className="notice__title">Новое р.м.</h2>
           <AdForm
             isActive={isActive}
+            pinMainCoordinate={pinMainCoordinate}
+            coordinateY={coordinateY}
+            coordinateX={coordinateX}
           />
         </section>
       </main>
@@ -104,16 +113,19 @@ class Main extends PureComponent {
   handelSubmit(event) {
     event.preventDefault();
   }
-  onMovePoint() {
-    // DragAndDrop();
-    console.log(`onMovePoint`);
-  }
+
 }
 
 Main.propTypes = {
   activeOffice: PropTypes.string,
+  coordinateX: PropTypes.string,
+  coordinateY: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
   onClickActive: PropTypes.func,
+  pinMainCoordinate: PropTypes.string,
+  onChangeCoordinate: PropTypes.func,
+  onChangeCoordinateX: PropTypes.func,
+  onChangeCoordinateY: PropTypes.func,
 };
 
 export default Main;

@@ -10,7 +10,6 @@ class AdForm extends PureComponent {
     this.formRef = createRef();
     this.titledRef = createRef();
     this.iconRef = createRef();
-    this.coordinateRef = createRef();
     this.type = createRef();
     this.departmens = createRef();
     this.timein = createRef();
@@ -25,12 +24,12 @@ class AdForm extends PureComponent {
 
 
   handleSubmit(evt) {
-    const {handlerSubmitForAdd} = this.props;
+    const {handlerSubmitForAdd, pinMainCoordinate, coordinateX, coordinateY} = this.props;
     evt.preventDefault();
     handlerSubmitForAdd({
-      titledRef: this.titledRef.current.value,
-      iconRef: this.iconRef.current.value,
-      coordinateRef: this.coordinateRef.current.value,
+      titled: this.titledRef.current.value,
+      avatar: this.iconRef.current.value,
+      coordinate: pinMainCoordinate,
       type: this.type.current.value,
       departmens: this.departmens.current.value,
       timein: this.timein.current.value,
@@ -40,6 +39,8 @@ class AdForm extends PureComponent {
       features: this.features.current.value,
       description: this.description.current.value,
       photo: this.photo.current.value,
+      coordinateX,
+      coordinateY,
     });
     // console.log(this.description.current.value);
     // console.log(this.iconRef.current.value);
@@ -48,7 +49,7 @@ class AdForm extends PureComponent {
   }
 
   render() {
-    const {isActive} = this.props;
+    const {isActive, pinMainCoordinate} = this.props;
     return (
       <form className={`ad-form ${!isActive ? `ad-form--disabled` : ``}`} method="post" encType="multipart/form-data"
         action="https://js.dump.academy/keksobooking" autoComplete="off" ref={this.formRef}>
@@ -75,7 +76,7 @@ class AdForm extends PureComponent {
         <fieldset className="ad-form__element ad-form__element--wide">
           {/* TODO: нужно ли тут отображать координаты ? или лучше следующее по номеру рабочее место ? */}
           <label className="ad-form__label" htmlFor="address">Координаты</label>
-          <input id="address" name="address" type="text" ref={this.coordinateRef} />
+          <input id="address" name="address" type="text" readOnly value={pinMainCoordinate} />
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="type">Тип организации</label>
@@ -164,14 +165,14 @@ class AdForm extends PureComponent {
 
 const mapDispatchToTitle = (dispatch) => ({
   handlerSubmitForAdd(place) {
-    console.log(`place:`, place);
-    dispatch(ActionPlace.addPlace(place));
+    if (place.title || place.coordinate) {
+      dispatch(ActionPlace.addPlace(place));
+    }
   },
 
 });
 
-const mapStateToProps = (store) => {
-  console.log(`places:`, store.DATA.places);
+const mapStateToProps = () => {
   return {
 
   };
@@ -180,7 +181,10 @@ const mapStateToProps = (store) => {
 
 AdForm.propTypes = {
   isActive: PropTypes.bool.isRequired,
-  handlerSubmitForAdd: PropTypes.func,
+  handlerSubmitForAdd: PropTypes.func.isRequired,
+  pinMainCoordinate: PropTypes.string.isRequired,
+  coordinateX: PropTypes.string.isRequired,
+  coordinateY: PropTypes.string.isRequired,
 };
 
 export {AdForm};

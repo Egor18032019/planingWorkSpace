@@ -8,8 +8,13 @@ const getActivePage = (state) => {
   return state[NameSpace.DATA].page;
 };
 
+const getPlaces = (state) => {
+  return state[NameSpace.DATA].places;
+};
+
 
 export {
   getActiveOffice,
   getActivePage,
+  getPlaces
 };

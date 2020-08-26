@@ -3,11 +3,12 @@ import React, {useRef} from "react";
 import PropTypes from "prop-types";
 
 const MapPin = (props) => {
-  const {isActive, onClickForActive} = props;
+  const {isActive, onClickForActive, onChangeCoordinate, onChangeCoordinateY,
+    onChangeCoordinateX} = props;
+
   const dragAndDrop = () => {
 
     const pinRef = useRef(null);
-
     const handleDown = (e) => {
       const setupDialogElement = document.querySelector(`.map__pins`);
       pinRef.current.style.position = `absolute`;
@@ -23,11 +24,20 @@ const MapPin = (props) => {
       function moveAt(evt) {
         evt.preventDefault();
         let pinWidth = pinRef.current.offsetWidth / 2;
-        let pinHeight = pinRef.current.offsetHeight / 3;
-        let coordX = evt.clientX - pinWidth;
-        let coordY = evt.clientY - pinHeight;
-        pinRef.current.style.top = coordY + `px`;
-        pinRef.current.style.left = coordX + `px`;
+        let pinHeight = pinRef.current.offsetHeight;
+        let coordX = evt.pageX - pinWidth;
+        let coordY = evt.pageY - pinHeight;
+        coordX = Math.max(0, Math.min(coordX, 1500));
+        coordY = Math.max(130, Math.min(coordY, 630));
+        let coordinateY = coordY + `px`;
+        let coordinateX = coordX + `px`;
+
+        pinRef.current.style.top = coordinateY;
+        pinRef.current.style.left = coordinateX;
+        let pinMainCoordinate = coordY + `px` + `, ` + coordX + `px`;
+        onChangeCoordinate(pinMainCoordinate);
+        onChangeCoordinateY(coordinateY);
+        onChangeCoordinateX(coordinateX);
       }
 
       // 3, перемещать в пределах выбранной области
@@ -40,8 +50,6 @@ const MapPin = (props) => {
         upEvt.preventDefault();
         setupDialogElement.onmousemove = null;
         pinRef.current.onmouseup = null;
-
-
       };
       // 5. Чтоб не обрабатывался как картинка браузером
       pinRef.current.ondragstart = function () {
@@ -51,8 +59,8 @@ const MapPin = (props) => {
 
     return (
       <button className="map__pin map__pin--main" style={{left: `570px`, top: `375px`}}
-        onClick={!isActive ? onClickForActive : ()=>{}} ref={pinRef}
-        onMouseDown={handleDown}>
+        onClick={!isActive ? onClickForActive : () => { }} ref={pinRef}
+        onMouseDown={isActive ? handleDown : ()=>{}}>
         <img src="img/pins.svg" draggable="false" alt="Метка объявления" width="20" height="22" />
         <svg viewBox="0 0 70 70" width="156" height="156" aria-label="Метка для поиска жилья">
           <defs>
@@ -75,6 +83,7 @@ const MapPin = (props) => {
 MapPin.propTypes = {
   isActive: PropTypes.bool.isRequired,
   onClickForActive: PropTypes.func.isRequired,
+  mapPinMainAdress: PropTypes.string
 };
 
 export default MapPin;

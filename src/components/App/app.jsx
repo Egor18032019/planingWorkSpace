@@ -58,14 +58,12 @@ class App extends PureComponent {
 
 const mapDispatchToTitle = (dispatch) => ({
   handlerClickOnChoise(place) {
-    console.log(`place:`, place);
     dispatch(ActionActive.activeState(place));
   },
 
 });
 
 const mapStateToProps = (store) => {
-  console.log(`store:`, store.DATA);
   return {
     activeOffice: getActiveOffice(store),
     activePage: getActivePage(store),

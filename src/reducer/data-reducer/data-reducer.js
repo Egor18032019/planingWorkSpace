@@ -1,6 +1,4 @@
-// import {
-//   mockSettings
-// } from "./mocks/offers.js";
+
 
 // Определяем действия(actions)
 const ActionType = {
@@ -8,9 +6,6 @@ const ActionType = {
   GET_OFFERS: `GET_OFFERS`,
 };
 
-// let filterOnCity = (town) => {
-//   return mockSettings.filter((element) => element.city === town);
-// };
 
 // Объект начального состояния(state):
 const initialState = {
