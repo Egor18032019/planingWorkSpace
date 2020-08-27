@@ -11,20 +11,21 @@ const MapPin = (props) => {
     const pinRef = useRef(null);
     const handleDown = (e) => {
       const setupDialogElement = document.querySelector(`.map__pins`);
-      pinRef.current.style.position = `absolute`;
+      // pinRef.current.style.position = `absolute`;
+      // pinRef.current.style.zIndex = 1000; // показывать пин над другими элементами
       moveAt(e);
       // переместим в body, чтобы пин был точно не внутри position:relative
+      // но все равно не понятно как он работает
       // по другому не смог сделать
       document.body.appendChild(pinRef.current);
 
-      pinRef.current.style.zIndex = 1000; // показывать пин над другими элементами
 
       // передвинуть пин под координаты курсора
       // и сдвинуть на половину ширины/высоты для центрирования
       function moveAt(evt) {
         evt.preventDefault();
         let pinWidth = pinRef.current.offsetWidth / 2;
-        let pinHeight = pinRef.current.offsetHeight;
+        let pinHeight = pinRef.current.offsetHeight / 2;
         let coordX = evt.pageX - pinWidth;
         let coordY = evt.pageY - pinHeight;
         coordX = Math.max(0, Math.min(coordX, 1500));

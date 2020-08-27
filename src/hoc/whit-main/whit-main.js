@@ -10,10 +10,11 @@ const withMain = (Component) => {
         pinMainCoordinate: ``,
         coordinateY: ``,
         coordinateX: ``,
+        popup: null,
       };
     }
     render() {
-      const {isActive, pinMainCoordinate, coordinateY, coordinateX} = this.state;
+      const {isActive, pinMainCoordinate, coordinateY, coordinateX, popup} = this.state;
       return (
         <Component
           {...this.props}
@@ -21,7 +22,10 @@ const withMain = (Component) => {
           coordinateY={coordinateY}
           coordinateX={coordinateX}
           pinMainCoordinate={pinMainCoordinate}
-
+          onUsePopup={(place)=>{
+            this.setState({popup: place});
+            console.log(`нажал на попап`);
+          }}
           onChangeCoordinate={(coordinate)=>{
             this.setState({pinMainCoordinate: coordinate});
           }}

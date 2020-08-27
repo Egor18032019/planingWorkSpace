@@ -40,7 +40,6 @@ const mapStateToProps = (store) => {
   };
 };
 Pins.propTypes = {
-  // isActive: PropTypes.bool.isRequired,
   places: PropTypes.array.isRequired,
 };
 

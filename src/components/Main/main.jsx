@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import MapPin from "../map-pin/map_pin.jsx";
 import Pins from "../pins/pins.jsx";
 import AdForm from "../ad-form/ad_form.jsx";
+import LeftPopup from "../left-popup/left-popup.jsx";
+
 class Main extends PureComponent {
   constructor(props) {
     super(props);
@@ -26,9 +28,11 @@ class Main extends PureComponent {
 
           {/* <!-- Метки объявлений --> */}
           <div className="map__pins">
-            <Pins />
+            <Pins
+            />
             <div className="map__overlay">
               <h2 className="map__title">г.{activeOffice} офис №</h2>
+
             </div>
             <MapPin
               isActive={isActive}

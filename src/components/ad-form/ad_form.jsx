@@ -27,7 +27,7 @@ class AdForm extends PureComponent {
     const {handlerSubmitForAdd, pinMainCoordinate, coordinateX, coordinateY} = this.props;
     evt.preventDefault();
     handlerSubmitForAdd({
-      titled: this.titledRef.current.value,
+      titlle: this.titledRef.current.value,
       avatar: this.iconRef.current.value,
       coordinate: pinMainCoordinate,
       type: this.type.current.value,
