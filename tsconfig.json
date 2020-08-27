@@ -9,13 +9,10 @@
     "allowSyntheticDefaultImports": false, // true не верит ReactDOM
     "lib": ["dom"]
               },
+  "include": ["**/*"],
   "exclude": [
     "demos",
     "node_modules",
     "dist"
   ],
-  "include": [
-    "/"
-     ],
-
 }

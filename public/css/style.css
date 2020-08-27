@@ -143,8 +143,8 @@
     position: absolute;
     z-index: 1;
 
-    width: 50px;
-    height: 70px;
+    width: 20px;
+    height: 20px;
     margin: 0;
     padding: 0;
 
@@ -174,13 +174,13 @@
     content: "";
     position: absolute;
 
-    width: 50px;
-    height: 70px;
+    width: 20px;
+    height: 20px;
 
     top: 0;
     left: 0;
 
-    background-image: url("../img/pins.svg");
+    /* background-image: url("../img/pins.svg"); */
     background-repeat: no-repeat;
     background-position: 0 -9px;
   }
@@ -199,7 +199,7 @@
 
   .map__pin--main {
     width: 65px;
-    height: 65px;
+    height: 55px;
 
     cursor: move;
   }
@@ -376,35 +376,35 @@
     border-radius: 3px;
   }
 
-  .map__feature--wifi {
+  .map__feature--notebook {
     background-position: 2px 5px;
   }
 
-  .map__checkbox:checked + .map__feature--wifi {
+  .map__checkbox:checked + .map__feature--notebook {
     background-position: 2px -172px;
   }
 
-  .map__feature--dishwasher {
+  .map__feature--apllebook {
     background-position: 2px -25px;
   }
 
-  .map__checkbox:checked + .map__feature--dishwasher {
+  .map__checkbox:checked + .map__feature--apllebook {
     background-position: 2px -202px;
   }
 
-  .map__feature--parking {
+  .map__feature--sistemnik {
     background-position: 3px -55px;
   }
 
-  .map__checkbox:checked + .map__feature--parking {
+  .map__checkbox:checked + .map__feature--sistemnik {
     background-position: 2px -232px;
   }
 
-  .map__feature--washer {
+  .map__feature--telephone {
     background-position: 2px -85px;
   }
 
-  .map__checkbox:checked + .map__feature--washer {
+  .map__checkbox:checked + .map__feature--telephone {
     background-position: 2px -262px;
   }
 
@@ -668,19 +668,19 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
   }
 
-  .feature--wifi {
+  .feature--notebook {
     background-position: 17px -50px;
   }
 
-  .feature--dishwasher {
+  .feature--apllebook {
     background-position: 17px -92px;
   }
 
-  .feature--parking {
+  .feature--sistemnik {
     background-position: 17px -134px;
   }
 
-  .feature--washer {
+  .feature--telephone {
     background-position: 17px -175px;
   }
 
@@ -696,19 +696,19 @@
     background-color: #ff5635;
   }
 
-  .feature__checkbox:checked + .feature--wifi {
+  .feature__checkbox:checked + .feature--notebook {
     background-position: 17px -297px;
   }
 
-  .feature__checkbox:checked + .feature--dishwasher {
+  .feature__checkbox:checked + .feature--apllebook {
     background-position: 17px -339px;
   }
 
-  .feature__checkbox:checked + .feature--parking {
+  .feature__checkbox:checked + .feature--sistemnik {
     background-position: 17px -382px;
   }
 
-  .feature__checkbox:checked + .feature--washer {
+  .feature__checkbox:checked + .feature--telephone {
     background-position: 17px -423px;
   }
 
@@ -1091,19 +1091,19 @@
     background-size: 25px 345px;
   }
 
-  .popup__feature--wifi {
+  .popup__feature--notebook {
     background-position: 2px 5px;
   }
 
-  .popup__feature--dishwasher {
+  .popup__feature--apllebook {
     background-position: 2px -25px;
   }
 
-  .popup__feature--parking {
+  .popup__feature--sistemnik {
     background-position: 3px -55px;
   }
 
-  .popup__feature--washer {
+  .popup__feature--telephone {
     background-position: 2px -85px;
   }
 
