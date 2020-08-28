@@ -2,6 +2,7 @@ import React, {useRef} from "react";
 
 import PropTypes from "prop-types";
 
+// Пин активатор
 const MapPin = (props) => {
   const {isActive, onClickForActive, onChangeCoordinate, onChangeCoordinateY,
     onChangeCoordinateX} = props;

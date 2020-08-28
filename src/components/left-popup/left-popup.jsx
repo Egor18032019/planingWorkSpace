@@ -7,11 +7,9 @@ class LeftPopup extends PureComponent {
     super(props);
   }
   render() {
-    if (this.props) {
-      const {place} = this.props;
-      console.log(place);
-
-      const {titlle, departmens, otdel, timein, timeout} = place;
+    const {activePlace} = this.props;
+    if (activePlace) {
+      const {titlle, departmens, otdel, timein, timeout} = activePlace;
       return (
         <article className="map__card popup">
           <img src="" className="popup__avatar" width="70" height="70" alt="Аватар пользователя" />
@@ -36,13 +34,14 @@ class LeftPopup extends PureComponent {
       );
 
     } else {
-      return (null);
+      return (`null`);
     }
   }
 }
 
 
 LeftPopup.propTypes = {
+  activePlace: PropTypes.object
 };
 
 export default LeftPopup;
