@@ -2,10 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {
-  ActionActive
-} from "../../reducer/data-reducer/data-reducer.js";
-import {getActiveOffice, getActivePage} from "../../reducer/selectors.js";
+import {ActionActive, ActionPlace} from "../../reducer/data-reducer/data-reducer.js";
+import {getActiveOffice, getActivePage, getPopup, getPlaces} from "../../reducer/selectors.js";
 import Main from "../Main/main.jsx";
 import withMain from "../../hoc/whit-main/whit-main.js";
 const MainWrapped = withMain(Main);
@@ -18,11 +16,16 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {activeOffice, handlerClickOnChoise, activePage} = this.props;
+    const {activeOffice, handlerClickOnChoise, activePage, activePlace, onPinClick,
+      places, handlerSubmitForAdd} = this.props;
     if (activePage === `officePage`) {
       return (
         <MainWrapped
           activeOffice={activeOffice}
+          activePlace={activePlace}
+          onPinClick={onPinClick}
+          places={places}
+          handlerSubmitForAdd={handlerSubmitForAdd}
         />
       );
     } else {
@@ -35,7 +38,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {activeOffice} = this.props;
+    const {activeOffice, onPinClick, activePlace, places, handlerSubmitForAdd} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -45,7 +48,10 @@ class App extends PureComponent {
           <Route exact path="/property">
             <MainWrapped
               activeOffice={activeOffice}
-            />
+              activePlace={activePlace}
+              handlerSubmitForAdd={handlerSubmitForAdd}
+              places={places}
+              onPinClick={onPinClick} />
           </Route>
           <Route exact path="/login">
 
@@ -60,20 +66,33 @@ const mapDispatchToTitle = (dispatch) => ({
   handlerClickOnChoise(place) {
     dispatch(ActionActive.activeState(place));
   },
-
+  onPinClick(activePlace) {
+    dispatch(ActionActive.activePopup(activePlace));
+  },
+  handlerSubmitForAdd(adPlace) {
+    if (adPlace.title || adPlace.coordinate) {
+      dispatch(ActionPlace.addPlace(adPlace));
+    }
+  },
 });
 
 const mapStateToProps = (store) => {
   return {
     activeOffice: getActiveOffice(store),
     activePage: getActivePage(store),
+    activePlace: getPopup(store),
+    places: getPlaces(store),
   };
 };
 
 App.propTypes = {
+  onPinClick: PropTypes.func.isRequired,
+  handlerClickOnChoise: PropTypes.func.isRequired,
+  handlerSubmitForAdd: PropTypes.func.isRequired,
   activeOffice: PropTypes.string,
   activePage: PropTypes.string.isRequired,
-  handlerClickOnChoise: PropTypes.func.isRequired,
+  places: PropTypes.array.isRequired,
+  activePlace: PropTypes.object,
 };
 
 export {App};

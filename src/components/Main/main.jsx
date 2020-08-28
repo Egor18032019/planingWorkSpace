@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import MapPin from "../map-pin/map_pin.jsx";
 import Pins from "../pins/pins.jsx";
 import AdForm from "../ad-form/ad_form.jsx";
+import LeftPopup from "../left-popup/left-popup.jsx";
+
 class Main extends PureComponent {
   constructor(props) {
     super(props);
@@ -12,7 +14,8 @@ class Main extends PureComponent {
   render() {
 
     const {activeOffice, isActive, onChangeCoordinate, pinMainCoordinate, onChangeCoordinateY,
-      onChangeCoordinateX, coordinateX, coordinateY} = this.props;
+      onChangeCoordinateX, coordinateX, coordinateY, activePlace,
+      onPinClick, places, handlerSubmitForAdd} = this.props;
     return (
       <main>
         <div className="promo">
@@ -20,13 +23,18 @@ class Main extends PureComponent {
           <img src="" alt="Планировщик рабочих мест" width="215" height="45" />
           {/* <!-- TODO: сделать картинку --> */}
         </div>
+        <LeftPopup
+          activePlace={activePlace}
+        />
 
         {/* <!-- Карта объявлений --> */}
         <section className={`map ${!isActive ? `map--faded` : ``}`}>
-
           {/* <!-- Метки объявлений --> */}
           <div className="map__pins">
-            <Pins />
+            <Pins
+              onPinClick={onPinClick}
+              places={places}
+            />
             <div className="map__overlay">
               <h2 className="map__title">г.{activeOffice} офис №</h2>
             </div>
@@ -94,6 +102,7 @@ class Main extends PureComponent {
             pinMainCoordinate={pinMainCoordinate}
             coordinateY={coordinateY}
             coordinateX={coordinateX}
+            handlerSubmitForAdd={handlerSubmitForAdd}
           />
         </section>
       </main>
@@ -117,15 +126,19 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
+  onPinClick: PropTypes.func.isRequired,
+  onClickActive: PropTypes.func.isRequired,
+  onChangeCoordinateY: PropTypes.func.isRequired,
+  onChangeCoordinate: PropTypes.func.isRequired,
+  onChangeCoordinateX: PropTypes.func.isRequired,
+  handlerSubmitForAdd: PropTypes.func.isRequired,
   activeOffice: PropTypes.string,
   coordinateX: PropTypes.string,
   coordinateY: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
-  onClickActive: PropTypes.func,
+  activePlace: PropTypes.object,
   pinMainCoordinate: PropTypes.string,
-  onChangeCoordinate: PropTypes.func,
-  onChangeCoordinateX: PropTypes.func,
-  onChangeCoordinateY: PropTypes.func,
+  places: PropTypes.array.isRequired,
 };
 
 export default Main;

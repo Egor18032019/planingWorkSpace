@@ -12,9 +12,14 @@ const getPlaces = (state) => {
   return state[NameSpace.DATA].places;
 };
 
+const getPopup = (state) => {
+  return state[NameSpace.DATA].popup;
+};
+
 
 export {
   getActiveOffice,
   getActivePage,
-  getPlaces
+  getPlaces,
+  getPopup
 };

@@ -21,7 +21,6 @@ const withMain = (Component) => {
           coordinateY={coordinateY}
           coordinateX={coordinateX}
           pinMainCoordinate={pinMainCoordinate}
-
           onChangeCoordinate={(coordinate)=>{
             this.setState({pinMainCoordinate: coordinate});
           }}

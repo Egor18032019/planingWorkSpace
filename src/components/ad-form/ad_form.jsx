@@ -1,8 +1,5 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-
-import {ActionPlace} from "../../reducer/data-reducer/data-reducer.js";
 
 class AdForm extends PureComponent {
   constructor(props) {
@@ -27,7 +24,7 @@ class AdForm extends PureComponent {
     const {handlerSubmitForAdd, pinMainCoordinate, coordinateX, coordinateY} = this.props;
     evt.preventDefault();
     handlerSubmitForAdd({
-      titled: this.titledRef.current.value,
+      titlle: this.titledRef.current.value,
       avatar: this.iconRef.current.value,
       coordinate: pinMainCoordinate,
       type: this.type.current.value,
@@ -50,6 +47,7 @@ class AdForm extends PureComponent {
 
   render() {
     const {isActive, pinMainCoordinate} = this.props;
+
     return (
       <form className={`ad-form ${!isActive ? `ad-form--disabled` : ``}`} method="post" encType="multipart/form-data"
         action="https://js.dump.academy/keksobooking" autoComplete="off" ref={this.formRef}>
@@ -163,29 +161,13 @@ class AdForm extends PureComponent {
   }
 }
 
-const mapDispatchToTitle = (dispatch) => ({
-  handlerSubmitForAdd(place) {
-    if (place.title || place.coordinate) {
-      dispatch(ActionPlace.addPlace(place));
-    }
-  },
-
-});
-
-const mapStateToProps = () => {
-  return {
-
-  };
-};
-
 
 AdForm.propTypes = {
-  isActive: PropTypes.bool.isRequired,
   handlerSubmitForAdd: PropTypes.func.isRequired,
   pinMainCoordinate: PropTypes.string.isRequired,
   coordinateX: PropTypes.string.isRequired,
   coordinateY: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
 };
 
-export {AdForm};
-export default connect(mapStateToProps, mapDispatchToTitle)(AdForm); // первым стате а вторым фдиспатчеры
+export default AdForm;
