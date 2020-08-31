@@ -11,7 +11,8 @@ module.exports = {
   },
   devServer: {
     // eslint-disable-next-line no-undef
-    contentBase: path.join(__dirname, `public`), // - пишем откуда серверу забирать файлы
+    contentBase: path.join(__dirname), // - пишем откуда серверу забирать файлы
+    // где лежат html и css файлы
     open: false, // чтобы при запуске не открывался браузер
     port: 800, // - порт в котором открывается
     historyApiFallback: true // для react-router-dom
