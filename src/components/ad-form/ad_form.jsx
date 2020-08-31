@@ -165,8 +165,6 @@ class AdForm extends PureComponent {
 AdForm.propTypes = {
   handlerSubmitForAdd: PropTypes.func.isRequired,
   pinMainCoordinate: PropTypes.string.isRequired,
-  coordinateX: PropTypes.string.isRequired,
-  coordinateY: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
 };
 
