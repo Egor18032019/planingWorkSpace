@@ -29,24 +29,25 @@ class Main extends PureComponent {
 
         {/* <!-- Карта объявлений --> */}
         <section className={`map ${!isActive ? `map--faded` : ``}`}>
+          <MapPin
+            isActive={isActive}
+            onClickForActive={this.onClickForActive}
+            onMovePoint={this.onMovePoint}
+            pinMainCoordinate={pinMainCoordinate}
+            onChangeCoordinate={onChangeCoordinate}
+            onChangeCoordinateX={onChangeCoordinateX}
+            onChangeCoordinateY={onChangeCoordinateY}
+          />
           {/* <!-- Метки объявлений --> */}
+          <Pins
+            onPinClick={onPinClick}
+            places={places}
+          />
           <div className="map__pins">
-            <Pins
-              onPinClick={onPinClick}
-              places={places}
-            />
             <div className="map__overlay">
               <h2 className="map__title">г.{activeOffice} офис №</h2>
             </div>
-            <MapPin
-              isActive={isActive}
-              onClickForActive={this.onClickForActive}
-              onMovePoint={this.onMovePoint}
-              pinMainCoordinate={pinMainCoordinate}
-              onChangeCoordinate={onChangeCoordinate}
-              onChangeCoordinateX={onChangeCoordinateX}
-              onChangeCoordinateY={onChangeCoordinateY}
-            />
+
           </div>
 
           {/* <!-- Фильтрация объявлений --> */}
@@ -133,8 +134,6 @@ Main.propTypes = {
   onChangeCoordinateX: PropTypes.func.isRequired,
   handlerSubmitForAdd: PropTypes.func.isRequired,
   activeOffice: PropTypes.string,
-  coordinateX: PropTypes.string,
-  coordinateY: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
   activePlace: PropTypes.object,
   pinMainCoordinate: PropTypes.string,

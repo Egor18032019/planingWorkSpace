@@ -18,15 +18,15 @@ const MapPin = (props) => {
       // переместим в body, чтобы пин был точно не внутри position:relative
       // но все равно не понятно как он работает
       // по другому не смог сделать
-      document.body.appendChild(pinRef.current);
+      setupDialogElement.appendChild(pinRef.current);
 
 
       // передвинуть пин под координаты курсора
       // и сдвинуть на половину ширины/высоты для центрирования
       function moveAt(evt) {
         evt.preventDefault();
-        let pinWidth = pinRef.current.offsetWidth / 2;
-        let pinHeight = pinRef.current.offsetHeight / 2;
+        let pinWidth = pinRef.current.offsetWidth;
+        let pinHeight = pinRef.current.offsetHeight;
         let coordX = evt.pageX - pinWidth;
         let coordY = evt.pageY - pinHeight;
         coordX = Math.max(0, Math.min(coordX, 1500));
@@ -34,12 +34,13 @@ const MapPin = (props) => {
         let coordinateY = coordY + `px`;
         let coordinateX = coordX + `px`;
 
+        let coordinateForPinY = coordY + pinHeight / 2;
         pinRef.current.style.top = coordinateY;
         pinRef.current.style.left = coordinateX;
         let pinMainCoordinate = coordY + `px` + `, ` + coordX + `px`;
         onChangeCoordinate(pinMainCoordinate);
-        onChangeCoordinateY(coordinateY);
-        onChangeCoordinateX(coordinateX);
+        onChangeCoordinateY(coordinateForPinY);
+        onChangeCoordinateX(coordX);
       }
 
       // 3, перемещать в пределах выбранной области

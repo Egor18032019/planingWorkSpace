@@ -8,8 +8,8 @@ const withMain = (Component) => {
       this.state = {
         isActive: false,
         pinMainCoordinate: ``,
-        coordinateY: ``,
-        coordinateX: ``,
+        coordinateY: null,
+        coordinateX: null,
       };
     }
     render() {

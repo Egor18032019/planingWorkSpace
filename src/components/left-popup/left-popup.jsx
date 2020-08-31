@@ -21,7 +21,7 @@ class LeftPopup extends PureComponent {
           <p className="popup__text popup__text--capacity">ааа</p>
           <p className="popup__text popup__text--time">{timein + ` до ` + timeout}</p>
           <ul className="popup__features">
-            <li className="popup__feature popup__feature--noutbuk"></li>
+            <li className="popup__feature popup__feature--notebook"></li>
             <li className="popup__feature popup__feature--apllebook"></li>
             <li className="popup__feature popup__feature--sistemnik"></li>
             <li className="popup__feature popup__feature--telephone"></li>
@@ -34,7 +34,7 @@ class LeftPopup extends PureComponent {
       );
 
     } else {
-      return (`null`);
+      return (``);
     }
   }
 }
