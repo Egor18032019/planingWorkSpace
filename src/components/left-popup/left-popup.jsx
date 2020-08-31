@@ -34,7 +34,7 @@ class LeftPopup extends PureComponent {
       );
 
     } else {
-      return (`null`);
+      return (``);
     }
   }
 }

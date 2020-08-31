@@ -11,7 +11,11 @@ const Pin = (props) => {
 
   if (place) {
     const {coordinateX, coordinateY} = place;
+    /**
+     * Ширина пина
+     */
     let pinWidth = 20;
+    // высота пина
     let pinHeight = 20;
     let coordinateXcurrent = coordinateX + pinWidth + `px`;
     let coordinateYcurrent = coordinateY + pinHeight + `px`;
