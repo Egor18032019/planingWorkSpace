@@ -7,7 +7,7 @@ module.exports = {
     // файл сборки (бандл) назвали bundle.js;
     filename: `bundle.js`,
     // eslint-disable-next-line no-undef
-    path: path.join(__dirname, `public`)// абсолютный путь до public
+    path: path.join(__dirname, `src`)// абсолютный путь до public
   },
   devServer: {
     // eslint-disable-next-line no-undef
