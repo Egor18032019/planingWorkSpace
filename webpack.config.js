@@ -2,7 +2,7 @@
 const path = require(`path`);
 //  экспортируем настройки
 module.exports = {
-  entry: `./src/index.jsx`, // - точка входа в приложение
+  entry: `./js/index.jsx`, // - точка входа в приложение
   output: {
     // файл сборки (бандл) назвали bundle.js;
     filename: `bundle.js`,

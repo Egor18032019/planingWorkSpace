@@ -11,7 +11,7 @@
     "test": "npm run eslint && npm run test.jest",
     "test.jest": "jest",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
