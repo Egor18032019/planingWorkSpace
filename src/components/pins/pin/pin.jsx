@@ -10,7 +10,7 @@ const Pin = (props) => {
   }
 
   if (place) {
-    const {coordinateX, coordinateY} = place;
+    const {coordinateX, coordinateY, id} = place;
     /**
      * Ширина пина
      */
@@ -22,8 +22,11 @@ const Pin = (props) => {
     return (
       <button type="button" className="map__pin" style={{left: coordinateXcurrent, top: coordinateYcurrent}}
         onClick={onPinClickForPopup}>
-        <img src="img/avatars/user02.png" width="20" height="20" draggable="false"
-          alt="Метка объявления" /></button>
+        {/* если картинку то не видно номера места. Подумать про другие варианты */}
+        {/* <img src="img/avatars/user02.png" width="20" height="20" draggable="false"
+          alt="Метка объявления" /> */}
+        <span>{id}</span>
+      </button>
     );
   } else {
     return ``;
@@ -34,7 +37,6 @@ const Pin = (props) => {
 Pin.propTypes = {
   onPinClick: PropTypes.func.isRequired,
   place: PropTypes.shape({
-    avatar: PropTypes.string,
   }),
 };
 

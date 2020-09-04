@@ -91,6 +91,8 @@
 
     background-color: #82bcc0;
     background-image: url("../img/Ekaterinburg_8floor.jpg");
+    /* что б картинка была полностью */
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center bottom;
 
@@ -181,6 +183,7 @@
     left: 0;
 
     /* background-image: url("../img/pins.svg"); */
+    border:1px solid orange;
     background-repeat: no-repeat;
     background-position: 0 -9px;
   }
@@ -988,7 +991,7 @@
     font-size: 12px;
 
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color:#e6fcd4;
   }
 
   .popup__avatar {

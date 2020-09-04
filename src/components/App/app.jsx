@@ -70,8 +70,10 @@ const mapDispatchToTitle = (dispatch) => ({
     dispatch(ActionActive.activePopup(activePlace));
   },
   handlerSubmitForAdd(adPlace) {
-    if (adPlace.title || adPlace.coordinate) {
+    if (adPlace.id) {
       dispatch(ActionPlace.addPlace(adPlace));
+    } else {
+      alert(`Заполните все поля`);
     }
   },
 });

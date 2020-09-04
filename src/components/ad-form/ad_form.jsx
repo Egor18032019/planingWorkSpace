@@ -1,53 +1,117 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 
+// TODO: написать hoc элемент или подумать о хуке
 class AdForm extends PureComponent {
   constructor(props) {
     super(props);
-    this.formRef = createRef();
+    this.state = {
+      avatar: ``,
+      avatarPreviewUrl: ``,
+      photo: ``,
+      photoPreviewUrl: ``
+    };
+    this.idRef = createRef();
     this.titledRef = createRef();
-    this.iconRef = createRef();
     this.type = createRef();
     this.departmens = createRef();
     this.timein = createRef();
     this.timeout = createRef();
     this.otdel = createRef();
     this.gender = createRef();
-    this.features = createRef();
+    this.notebook = createRef();
+    this.apllebook = createRef();
+    this.sistemnik = createRef();
+    this.telephone = createRef();
     this.description = createRef();
     this.photo = createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleAvatarChange = this._handleAvatarChange.bind(this);
+    this._handlePhotoChange = this._handlePhotoChange.bind(this);
+    this._handleReset = this._handleReset.bind(this);
   }
 
 
   handleSubmit(evt) {
-    const {handlerSubmitForAdd, pinMainCoordinate, coordinateX, coordinateY} = this.props;
+    const {handlerSubmitForAdd, coordinateX, coordinateY} = this.props;
     evt.preventDefault();
     handlerSubmitForAdd({
+      id: this.idRef.current.value,
       titlle: this.titledRef.current.value,
-      avatar: this.iconRef.current.value,
-      coordinate: pinMainCoordinate,
-      type: this.type.current.value,
+      avatar: this.state.avatarPreviewUrl,
+      company: this.type.current.value,
       departmens: this.departmens.current.value,
       timein: this.timein.current.value,
       timeout: this.timeout.current.value,
       otdel: this.otdel.current.value,
       gender: this.gender.current.value,
-      features: this.features.current.value,
+      notebook: this.notebook.current.checked,
+      apllebook: this.notebook.current.checked,
+      sistemnik: this.notebook.current.checked,
+      telephone: this.notebook.current.checked,
       description: this.description.current.value,
-      photo: this.photo.current.value,
+      photo: this.state.photoPreviewUrl,
       coordinateX,
       coordinateY,
     });
-    // console.log(this.description.current.value);
-    // console.log(this.iconRef.current.value);
-    // // console.log(this.iconRef.current.files[0].name);
-    // console.log(this.iconRef.current.files[0]);
+  }
+
+  _handleAvatarChange(e) {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    // Запускает процесс чтения данных указанного Blob(file),
+    // по завершении, аттрибут result будет содержать данные файла в виде data: URL.
+    // Если так не делать то и содержать ничего небудет
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      this.setState({
+        avatar: file,
+        avatarPreviewUrl: reader.result
+      });
+    };
+  }
+
+  _handlePhotoChange(e) {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    // Запускает процесс чтения данных указанного Blob(file),
+    // по завершении, аттрибут result будет содержать данные файла в виде data: URL.
+    // Если так не делать то и содержать ничего небудет
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      this.setState({
+        photo: file,
+        photoPreviewUrl: reader.result
+      });
+    };
+  }
+  _handleReset() {
+    this.setState({
+      photo: ``,
+      photoPreviewUrl: ``
+    });
+    this.formRef = null;
   }
 
   render() {
-    const {isActive, pinMainCoordinate} = this.props;
-
+    const {isActive} = this.props;
+    let {avatarPreviewUrl, photoPreviewUrl} = this.state;
+    let imagePreview = null;
+    let photoPreview = null;
+    if (avatarPreviewUrl) {
+      imagePreview = (<img src={avatarPreviewUrl} />);
+    } else {
+      imagePreview = (<img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44" />
+      );
+    }
+    if (photoPreviewUrl) {
+      photoPreview = (<img src={photoPreviewUrl} />);
+    } else {
+      photoPreview = (<img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44" />
+      );
+    }
     return (
       <form className={`ad-form ${!isActive ? `ad-form--disabled` : ``}`} method="post" encType="multipart/form-data"
         action="https://js.dump.academy/keksobooking" autoComplete="off" ref={this.formRef}>
@@ -55,11 +119,11 @@ class AdForm extends PureComponent {
           <legend className="ad-form-header__title">Аватарка сотрудника</legend>
           <div className="ad-form-header__upload">
             <div className="ad-form-header__preview">
-              <img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44" />
+              {imagePreview}
             </div>
             <div className="ad-form__field">
               <input type="file" id="avatar" name="avatar" className="ad-form-header__input visually-hidden"
-                ref={this.iconRef} />
+                onChange={(e) => this._handleAvatarChange(e)} />
               <label className="ad-form-header__drop-zone" htmlFor="avatar">Загрузить фото...</label>
             </div>
             <p className="ad-form-header__info">Заполните все обязательные поля.
@@ -72,24 +136,23 @@ class AdForm extends PureComponent {
             placeholder="Тут кто то новенький" ref={this.titledRef} />
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--wide">
-          {/* TODO: нужно ли тут отображать координаты ? или лучше следующее по номеру рабочее место ? */}
-          <label className="ad-form__label" htmlFor="address">Координаты</label>
-          <input id="address" name="address" type="text" readOnly value={pinMainCoordinate} />
+          <label className="ad-form__label" htmlFor="address">Номер рабочего места</label>
+          <input id="address" name="address" type="text" required ref={this.idRef} />
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="type">Тип организации</label>
           <select id="type" name="type" defaultValue="pao" ref={this.type}>
-            <option value="pao">ПАО</option>
-            <option value="ao">АО</option>
-            <option value="contract">Подрядчики</option>
+            <option value="ПАО">ПАО</option>
+            <option value="АО">АО</option>
+            <option value="Подрядчики">Подрядчики</option>
           </select>
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="departmens">Департамент</label>
           <select id="departmens" name="departmens" defaultValue="1" ref={this.departmens}>
-            <option value="1">Операционный</option>
-            <option value="2">Разработчики</option>
-            <option value="3">Подрядчики</option>
+            <option value="Операционный">Операционный</option>
+            <option value="Разработчики">Разработчики</option>
+            <option value="Подрядчики">Подрядчики</option>
           </select>
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--time">
@@ -101,39 +164,40 @@ class AdForm extends PureComponent {
           </select>
           <select id="timeout" name="timeout" title="Time to go out" defaultValue="18:00" ref={this.timeout}>
             <option value="18:00">Где то до 18</option>
-            <option value="19:00">Где то до 13</option>
-            <option value="20:00">Где то до 14</option>
+            <option value="19:00">Где то до 19</option>
+            <option value="20:00">Где то до 20</option>
           </select>
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="otdel">Отдел</label>
-          <select id="otdel" name="otdel" defaultValue="1" ref={this.otdel}>
-            <option value="0">АХО</option>
-            <option value="1">Разработка</option>
-            <option value="2" >Подрядчики</option>
-            <option value="3">Тестирование</option>
+          <select id="otdel" name="otdel" defaultValue="АХО" ref={this.otdel}>
+            <option value="АХО">АХО</option>
+            <option value="Разработка">Разработка</option>
+            <option value="Подрядчики" >Подрядчики</option>
+            <option value="Тестирование">Тестирование</option>
+            <option value="Аналитики">Аналитики</option>
           </select>
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="gender">Пол</label>
-          <select id="gender" name="gender" defaultValue="1" ref={this.gender}>
-            <option value="1">Мужской</option>
-            <option value="0">Женский</option>
+          <select id="gender" name="gender" defaultValue="Мужской" ref={this.gender}>
+            <option value="Мужской">Мужской</option>
+            <option value="Женский">Женский</option>
           </select>
         </fieldset>
-        <fieldset className="ad-form__element ad-form__element--wide features" ref={this.features}>
+        <fieldset className="ad-form__element ad-form__element--wide features" >
           <legend>Оборудование</legend>
           <input type="checkbox" name="features" value="notebook" id="feature-notebook"
-            className="feature__checkbox visually-hidden" />
+            className="feature__checkbox visually-hidden" ref={this.notebook}/>
           <label className="feature feature--notebook" htmlFor="feature-notebook">Ноутбук</label>
           <input type="checkbox" name="features" value="apllebook" id="feature-apllebook"
-            className="feature__checkbox visually-hidden" />
+            className="feature__checkbox visually-hidden" ref={this.apllebook} />
           <label className="feature feature--apllebook" htmlFor="feature-apllebook">МакБук</label>
           <input type="checkbox" name="features" value="sistemnik" id="feature-sistemnik"
-            className="feature__checkbox visually-hidden" />
+            className="feature__checkbox visually-hidden" ref={this.sistemnik} />
           <label className="feature feature--sistemnik" htmlFor="feature-sistemnik">Системный блок</label>
           <input type="checkbox" name="features" value="telephone" id="feature-telephone"
-            className="feature__checkbox visually-hidden" />
+            className="feature__checkbox visually-hidden" ref={this.telephone} />
           <label className="feature feature--telephone" htmlFor="feature-telephone">Стационарный телефон</label>
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--wide">
@@ -145,15 +209,18 @@ class AdForm extends PureComponent {
           <label className="ad-form__label">Фотография рабочего места</label>
           <div className="ad-form__photo-container">
             <div className="ad-form__upload">
-              <input type="file" id="images" name="images" className="ad-form__input visually-hidden" ref={this.photo} />
+              <input type="file" id="images" name="images" className="ad-form__input visually-hidden"
+                onChange={(e) => this._handlePhotoChange(e)} />
               <label htmlFor="images" className="ad-form__drop-zone">Загрузить фото...</label>
             </div>
-            <div className="ad-form__photo"></div>
+            <div className="ad-form__photo">
+              {photoPreview}
+            </div>
           </div>
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--submit">
           <button className="ad-form__submit" type="submit" onClick={this.handleSubmit}>Опубликовать</button>
-    или <button className="ad-form__reset" type="reset">очистить</button>
+    или <button className="ad-form__reset" type="reset" onClick={this._handleReset}>очистить</button>
         </fieldset>
       </form>
 

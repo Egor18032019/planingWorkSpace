@@ -18,7 +18,7 @@ class Pins extends PureComponent {
                 <Pin
                   place={place}
                   onPinClick={onPinClick}
-                  key={place.timein + place.coordinate}
+                  key={place.id + place.coordinateX}
                 />
               );
             })
