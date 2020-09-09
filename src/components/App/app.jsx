@@ -73,6 +73,7 @@ const mapDispatchToTitle = (dispatch) => ({
     if (adPlace.id) {
       dispatch(ActionPlace.addPlace(adPlace));
     } else {
+      // eslint-disable-next-line no-alert
       alert(`Заполните все поля`);
     }
   },

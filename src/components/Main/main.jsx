@@ -5,6 +5,9 @@ import Pins from "../pins/pins.jsx";
 import AdForm from "../ad-form/ad_form.jsx";
 import LeftPopup from "../left-popup/left_popup.jsx";
 import MapFilter from "../map-filter/map_filter.jsx";
+import withPopup from "../../hoc/whit-popup/whit_popup.jsx";
+const PopupWrapped = withPopup(LeftPopup);
+
 
 class Main extends PureComponent {
   constructor(props) {
@@ -13,7 +16,6 @@ class Main extends PureComponent {
   }
 
   render() {
-
     const {activeOffice, isActive, onChangeCoordinate, pinMainCoordinate, onChangeCoordinateY,
       onChangeCoordinateX, coordinateX, coordinateY, activePlace,
       onPinClick, places, handlerSubmitForAdd} = this.props;
@@ -24,11 +26,12 @@ class Main extends PureComponent {
           {/* <img src="" alt="Планировщик рабочих мест" width="215" height="45" /> */}
           {/* <!-- TODO: сделать картинку --> */}
         </div>
-        <LeftPopup
-          activePlace={activePlace}
-          onPinClick={onPinClick}
-        />
-
+        {activePlace ?
+          <PopupWrapped
+            activePlace={activePlace}
+            onPinClick={onPinClick}
+          />
+          : ``}
         {/* <!-- Карта объявлений --> */}
         <section className={`map ${!isActive ? `map--faded` : ``}`}>
           <MapPin
@@ -93,6 +96,8 @@ Main.propTypes = {
   onChangeCoordinateX: PropTypes.func.isRequired,
   handlerSubmitForAdd: PropTypes.func.isRequired,
   activeOffice: PropTypes.string,
+  coordinateX: PropTypes.number,
+  coordinateY: PropTypes.number,
   isActive: PropTypes.bool.isRequired,
   activePlace: PropTypes.object,
   pinMainCoordinate: PropTypes.string,

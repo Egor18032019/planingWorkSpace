@@ -33,11 +33,13 @@ const dataReducer = (state = initialState, action) => {
       });
     case ActionType.ADD_PLACE:
       let statePlaceRewrite = [...state.places];
+      // TODO найти по id и заменить а если нет по id то доавить
       statePlaceRewrite.push(action.payload);
       return Object.assign({}, state, {
         places: statePlaceRewrite
       });
     case ActionType.ACTIVE_PLACE:
+      state.popup = null;
       return Object.assign({}, state, {
         popup: action.payload
       });
@@ -72,7 +74,6 @@ const forSpaceFilter = (place, filter) => {
   }
   return place;
 };
-
 const onSortPins = (data, filter) => {
   return data.filter((place) => {
     return forCompanyFilter(place, filter) && forDepartamensFilter(place, filter) &&
@@ -81,6 +82,7 @@ const onSortPins = (data, filter) => {
 
 
 };
+
 const ActionActive = {
   activeState: (place) => ({
     type: ActionType.GET_OFFERS, // обязательно поле type

@@ -11,6 +11,7 @@ class AdForm extends PureComponent {
       photo: ``,
       photoPreviewUrl: ``
     };
+    this.formRef = createRef();
     this.idRef = createRef();
     this.titledRef = createRef();
     this.type = createRef();
@@ -141,7 +142,8 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="type">Тип организации</label>
-          <select id="type" name="type" defaultValue="pao" ref={this.type}>
+          <select id="type" name="type" defaultValue="выбрать" ref={this.type}>
+            <option value="выбрать">не выбрано</option>
             <option value="ПАО">ПАО</option>
             <option value="АО">АО</option>
             <option value="Подрядчики">Подрядчики</option>
@@ -149,7 +151,8 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="departmens">Департамент</label>
-          <select id="departmens" name="departmens" defaultValue="1" ref={this.departmens}>
+          <select id="departmens" name="departmens" defaultValue="выбрать" ref={this.departmens}>
+            <option value="выбрать">не выбрано</option>
             <option value="Операционный">Операционный</option>
             <option value="Разработчики">Разработчики</option>
             <option value="Подрядчики">Подрядчики</option>
@@ -157,12 +160,12 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--time">
           <label className="ad-form__label" htmlFor="timein">Время работы</label>
-          <select id="timein" name="timein" defaultValue="09:00" ref={this.timein}>
+          <select id="timein" name="timein" defaultValue="" ref={this.timein}>
             <option value="09:00">Примерно с 9</option>
             <option value="10:00">Примерно с 10</option>
             <option value="11:00">Примерно с 11</option>
           </select>
-          <select id="timeout" name="timeout" title="Time to go out" defaultValue="18:00" ref={this.timeout}>
+          <select id="timeout" name="timeout" title="Time to go out" defaultValue="" ref={this.timeout}>
             <option value="18:00">Где то до 18</option>
             <option value="19:00">Где то до 19</option>
             <option value="20:00">Где то до 20</option>
@@ -170,7 +173,8 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="otdel">Отдел</label>
-          <select id="otdel" name="otdel" defaultValue="АХО" ref={this.otdel}>
+          <select id="otdel" name="otdel" defaultValue="выбрать" ref={this.otdel}>
+            <option value="выбрать">не выбрано</option>
             <option value="АХО">АХО</option>
             <option value="Разработка">Разработка</option>
             <option value="Подрядчики" >Подрядчики</option>
@@ -180,7 +184,8 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element">
           <label className="ad-form__label" htmlFor="gender">Пол</label>
-          <select id="gender" name="gender" defaultValue="Мужской" ref={this.gender}>
+          <select id="gender" name="gender" defaultValue="выбрать" ref={this.gender}>
+            <option value="выбрать">не выбрано</option>
             <option value="Мужской">Мужской</option>
             <option value="Женский">Женский</option>
           </select>
@@ -200,6 +205,7 @@ class AdForm extends PureComponent {
             className="feature__checkbox visually-hidden" ref={this.telephone} />
           <label className="feature feature--telephone" htmlFor="feature-telephone">Стационарный телефон</label>
         </fieldset>
+
         <fieldset className="ad-form__element ad-form__element--wide">
           <label className="ad-form__label" htmlFor="description">Описание (не обязательно)</label>
           <textarea id="description" name="description"
