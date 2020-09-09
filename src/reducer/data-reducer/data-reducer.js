@@ -32,11 +32,22 @@ const dataReducer = (state = initialState, action) => {
         places: workedPlaceOnOffice[action.office]
       });
     case ActionType.ADD_PLACE:
-      let statePlaceRewrite = [...state.places];
-      // TODO найти по id и заменить а если нет по id то доавить
-      statePlaceRewrite.push(action.payload);
+      let stateDataRewriteArray = [...state.places];
+      let newPlace = action.payload;
+      let index = stateDataRewriteArray.findIndex((it) => it.id === newPlace.id);
+      if (index) {
+        console.log(index);
+        console.log((!newPlace.coordinateX || !newPlace.coordinateY));
+        if (!newPlace.coordinateX || !newPlace.coordinateY) {
+          newPlace.coordinateX = stateDataRewriteArray[index].coordinateX;
+          newPlace.coordinateY = stateDataRewriteArray[index].coordinateY;
+        }
+        stateDataRewriteArray[index] = newPlace;
+      } else {
+        stateDataRewriteArray.push(newPlace);
+      }
       return Object.assign({}, state, {
-        places: statePlaceRewrite
+        places: stateDataRewriteArray
       });
     case ActionType.ACTIVE_PLACE:
       state.popup = null;
@@ -68,9 +79,9 @@ const forGenderFilter = (place, filter) => {
 };
 const forSpaceFilter = (place, filter) => {
   if (filter.space < 1) {
-    return typeof (place.titlle) === `undefined`;
+    return place.titlle === ``;
   } else if (filter.space > 0) {
-    return typeof (place.titlle) === `string`;
+    return place.titlle.length > 1;
   }
   return place;
 };
@@ -89,7 +100,7 @@ const ActionActive = {
     office: place
   }),
   activePopup: (place) => ({
-    type: ActionType.ACTIVE_PLACE, // обязательно поле type
+    type: ActionType.ACTIVE_PLACE,
     payload: place
   }),
   activeFilter: (filter) => ({

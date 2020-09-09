@@ -10,6 +10,7 @@ class Pins extends PureComponent {
   }
   render() {
     const {places, onPinClick} = this.props;
+
     if (places.length > 0) {
       return (
         places.map(
@@ -18,7 +19,7 @@ class Pins extends PureComponent {
                 <Pin
                   place={place}
                   onPinClick={onPinClick}
-                  key={place.id + place.coordinateX}
+                  key={place.id + place.titlle}
                 />
               );
             })
