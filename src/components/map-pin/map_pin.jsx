@@ -43,13 +43,14 @@ const MapPin = (props) => {
         let coordinateY = coordY - pinHeight + `px`;
         let coordinateX = coordX - pinWidth / 2 + `px`;
 
-        let coordinateForPinY = coordY + pinHeight / 2;
+        let coordinateForPinY = coordY - pinHeight / 2;
+        let coordinateForPinX = coordX - pinWidth / 2;
         pinRef.current.style.top = coordinateY;
         pinRef.current.style.left = coordinateX;
         let pinMainCoordinate = coordY + `px` + `, ` + coordX + `px`;
         onChangeCoordinate(pinMainCoordinate);
         onChangeCoordinateY(coordinateForPinY);
-        onChangeCoordinateX(coordX);
+        onChangeCoordinateX(coordinateForPinX);
       }
 
       // 3, перемещать в пределах выбранной области

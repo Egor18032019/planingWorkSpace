@@ -133,7 +133,7 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--wide">
           <label className="ad-form__label" htmlFor="title">Информация о сотруднике</label>
-          <input id="title" name="title" type="text" maxLength="100" minLength="30" required
+          <input id="title" name="title" type="text" maxLength="100" minLength="1" required
             placeholder="Тут кто то новенький" ref={this.titledRef} />
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--wide">
@@ -193,7 +193,7 @@ class AdForm extends PureComponent {
         <fieldset className="ad-form__element ad-form__element--wide features" >
           <legend>Оборудование</legend>
           <input type="checkbox" name="features" value="notebook" id="feature-notebook"
-            className="feature__checkbox visually-hidden" ref={this.notebook}/>
+            className="feature__checkbox visually-hidden" ref={this.notebook} />
           <label className="feature feature--notebook" htmlFor="feature-notebook">Ноутбук</label>
           <input type="checkbox" name="features" value="apllebook" id="feature-apllebook"
             className="feature__checkbox visually-hidden" ref={this.apllebook} />
@@ -239,6 +239,8 @@ AdForm.propTypes = {
   handlerSubmitForAdd: PropTypes.func.isRequired,
   pinMainCoordinate: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
+  coordinateX: PropTypes.number,
+  coordinateY: PropTypes.number,
 };
 
 export default AdForm;

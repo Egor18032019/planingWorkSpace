@@ -35,7 +35,7 @@ const dataReducer = (state = initialState, action) => {
       let stateDataRewriteArray = [...state.places];
       let newPlace = action.payload;
       let index = stateDataRewriteArray.findIndex((it) => it.id === newPlace.id);
-      if (index) {
+      if (index > -1) {
         console.log(index);
         console.log((!newPlace.coordinateX || !newPlace.coordinateY));
         if (!newPlace.coordinateX || !newPlace.coordinateY) {
