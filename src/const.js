@@ -3,7 +3,7 @@
  */
 const workedPlaceOnOffice = {
   Ekaterinburg: [{
-    id: 4,
+    id: `4`,
     titlle: ``,
     company: `выбрать`,
     departmens: `выбрать`,
@@ -13,7 +13,7 @@ const workedPlaceOnOffice = {
     coordinateY: 515.5
   },
   {
-    id: 5,
+    id: `5`,
     titlle: ``,
     company: `выбрать`,
     departmens: `выбрать`,
@@ -23,7 +23,7 @@ const workedPlaceOnOffice = {
     coordinateY: 494.5
   },
   {
-    id: 6,
+    id: `6`,
     titlle: ``,
     company: `выбрать`,
     departmens: `выбрать`,
@@ -33,7 +33,7 @@ const workedPlaceOnOffice = {
     coordinateY: 478.5
   },
   {
-    id: 7,
+    id: `7`,
     titlle: ``,
     company: `выбрать`,
     departmens: `выбрать`,
@@ -43,7 +43,7 @@ const workedPlaceOnOffice = {
     coordinateY: 425
   },
   {
-    id: 8,
+    id: `8`,
     titlle: ``,
     company: `выбрать`,
     departmens: `выбрать`,
@@ -53,7 +53,7 @@ const workedPlaceOnOffice = {
     coordinateY: 449
   },
   {
-    id: 9,
+    id: `9`,
     titlle: ``,
     company: `выбрать`,
     departmens: `выбрать`,
