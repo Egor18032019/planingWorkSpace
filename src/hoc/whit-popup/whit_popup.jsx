@@ -62,7 +62,7 @@ const withPopup = (Component) => {
   }
   WithMain.propTypes = {
     activePlace: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       company: PropTypes.string.isRequired,
       titlle: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
@@ -76,7 +76,7 @@ const withPopup = (Component) => {
 
 withPopup.propTypes = {
   activePlace: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     company: PropTypes.string.isRequired,
     titlle: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
