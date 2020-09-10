@@ -17,9 +17,9 @@ class ChoicePlaces extends PureComponent {
       <form action="#" className="map__filters" autoComplete="off"
         onSubmit={this.handleSubmit}>
         <select name="choise-space" id="choise" className="map__choise" defaultValue="Екатеринбург" ref={this.menuRef}>
-          <option value="Екатеринбург">Екатеринбург</option>
-          <option value="Рязань">Рязань</option>
-          <option value="Самара">Самара</option>
+          <option value="Ekaterinburg">Екатеринбург</option>
+          <option value="Ryazan">Рязань</option>
+          <option value="Samara">Самара</option>
         </select>
         <button> Загрузить выбранный город</button>
       </form>

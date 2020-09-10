@@ -11,36 +11,46 @@ const MapPin = (props) => {
 
     const pinRef = useRef(null);
     const handleDown = (e) => {
+      e.preventDefault();
+
       const setupDialogElement = document.querySelector(`.map__pins`);
+      let rect = setupDialogElement.getBoundingClientRect();
+
       // pinRef.current.style.position = `absolute`;
       // pinRef.current.style.zIndex = 1000; // показывать пин над другими элементами
       moveAt(e);
       // переместим в body, чтобы пин был точно не внутри position:relative
-      // но все равно не понятно как он работает
-      // по другому не смог сделать
       setupDialogElement.appendChild(pinRef.current);
-
-
       // передвинуть пин под координаты курсора
       // и сдвинуть на половину ширины/высоты для центрирования
       function moveAt(evt) {
         evt.preventDefault();
         let pinWidth = pinRef.current.offsetWidth;
         let pinHeight = pinRef.current.offsetHeight;
-        let coordX = evt.pageX - pinWidth;
-        let coordY = evt.pageY - pinHeight;
-        coordX = Math.max(0, Math.min(coordX, 1500));
-        coordY = Math.max(130, Math.min(coordY, 630));
-        let coordinateY = coordY + `px`;
-        let coordinateX = coordX + `px`;
+        let coordX = evt.clientX - rect.left;
+        if ((coordX < (pinWidth / 3) || (coordX > (rect.width - pinWidth)))) {
+          setupDialogElement.onmousemove = null;
+          pinRef.current.onmouseup = null;
+          coordX = Math.max((pinWidth / 3), Math.min(coordX, (rect.width - pinWidth)));
+        }
+        let coordY = evt.clientY - rect.top;
+        if ((coordY < 248) || (coordY > 690)) {
+          setupDialogElement.onmousemove = null;
+          pinRef.current.onmouseup = null;
+          coordY = Math.max(252, Math.min(coordY, 690));
+        }
+        coordX = Math.max(0, Math.min(coordX, rect.width));
+        let coordinateY = coordY - pinHeight + `px`;
+        let coordinateX = coordX - pinWidth / 2 + `px`;
 
-        let coordinateForPinY = coordY + pinHeight / 2;
+        let coordinateForPinY = coordY - pinHeight / 2;
+        let coordinateForPinX = coordX - pinWidth / 2;
         pinRef.current.style.top = coordinateY;
         pinRef.current.style.left = coordinateX;
         let pinMainCoordinate = coordY + `px` + `, ` + coordX + `px`;
         onChangeCoordinate(pinMainCoordinate);
         onChangeCoordinateY(coordinateForPinY);
-        onChangeCoordinateX(coordX);
+        onChangeCoordinateX(coordinateForPinX);
       }
 
       // 3, перемещать в пределах выбранной области
@@ -63,7 +73,7 @@ const MapPin = (props) => {
     return (
       <button className="map__pin map__pin--main" style={{left: `570px`, top: `375px`}}
         onClick={!isActive ? onClickForActive : () => { }} ref={pinRef}
-        onMouseDown={isActive ? handleDown : ()=>{}}>
+        onMouseDown={isActive ? handleDown : () => { }}>
         <img src="img/pins.svg" draggable="false" alt="Метка объявления" width="20" height="22" />
         <svg viewBox="0 0 70 70" width="156" height="156" aria-label="Метка для поиска жилья">
           <defs>
