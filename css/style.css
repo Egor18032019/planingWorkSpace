@@ -90,7 +90,7 @@ fieldset {
   height: 750px;
 
   background-color: #82bcc0;
-  background-image: url("../img/Ekaterinburg_8floor.jpg");
+  /* background-image: url("../img/Ekaterinburg_8floor.jpg"); */
   /* что б картинка была полностью */
   background-size: contain;
   background-repeat: no-repeat;
@@ -125,7 +125,7 @@ fieldset {
   width: 100%;
   margin: 0;
   padding: 0;
-  margin-top: 45px;
+  margin-top: 75px;
   font-size: 85px;
   font-weight: 700;
   text-align: center;

@@ -5,6 +5,12 @@ const Pin = (props) => {
   const {place} = props;
 
   function onPinClickForPopup() {
+    // ожидаю что при клике на другой пин и передачи  onPinClick(null);
+    //  popup удаляеться так как нет  данных и
+    // весь его стайт сбрасывается
+    // ожидания не  оправдываються
+    // если удалять popup.remove(); то он всё равно не работает
+    // const popup = document.querySelector(`.popup-form`);
     const {onPinClick} = props;
     onPinClick(place);
   }

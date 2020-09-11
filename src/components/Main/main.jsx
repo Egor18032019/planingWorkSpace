@@ -7,7 +7,8 @@ import LeftPopup from "../left-popup/left_popup.jsx";
 import MapFilter from "../map-filter/map_filter.jsx";
 import withPopup from "../../hoc/whit-popup/whit_popup.jsx";
 const PopupWrapped = withPopup(LeftPopup);
-
+import {arrayBackGroundImage} from "../../const.js";
+import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
 
 class Main extends PureComponent {
   constructor(props) {
@@ -18,13 +19,17 @@ class Main extends PureComponent {
   render() {
     const {activeOffice, isActive, onChangeCoordinate, pinMainCoordinate, onChangeCoordinateY,
       onChangeCoordinateX, coordinateX, coordinateY, activePlace,
-      onPinClick, places, handlerSubmitForAdd} = this.props;
+      onPinClick, places, handlerSubmitForAdd, handlerClickOnChoise} = this.props;
+    const BGI = arrayBackGroundImage[activeOffice];
     return (
       <main>
         <div className="promo">
           <h1 className="promo__title visually-hidden">Планировщик рабочих мест</h1>
-          {/* <img src="" alt="Планировщик рабочих мест" width="215" height="45" /> */}
-          {/* <!-- TODO: сделать картинку --> */}
+          {isActive ?
+            <ChoicePlaces
+              onChoiseOfficeClick={handlerClickOnChoise}
+            /> : ``
+          }
         </div>
         {activePlace ?
           <PopupWrapped
@@ -33,7 +38,7 @@ class Main extends PureComponent {
           />
           : ``}
         {/* <!-- Карта объявлений --> */}
-        <section className={`map ${!isActive ? `map--faded` : ``}`}>
+        <section className={`map ${!isActive ? `map--faded` : ``}`} style={{backgroundImage: `url(` + `${BGI}` + `)`}}>
           <MapPin
             isActive={isActive}
             onClickForActive={this.onClickForActive}
@@ -50,7 +55,7 @@ class Main extends PureComponent {
           />
           <div className="map__pins">
             <div className="map__overlay">
-              <h2 className="map__title">г.{activeOffice} офис №</h2>
+              <h2 className="map__title">г.{activeOffice} офис</h2>
             </div>
 
           </div>
@@ -68,7 +73,7 @@ class Main extends PureComponent {
             handlerSubmitForAdd={handlerSubmitForAdd}
           />
         </section>
-      </main>
+      </main >
     );
   }
   componentDidMount() {
@@ -90,6 +95,7 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   onPinClick: PropTypes.func.isRequired,
+  handlerClickOnChoise: PropTypes.func.isRequired,
   onClickActive: PropTypes.func.isRequired,
   onChangeCoordinateY: PropTypes.func.isRequired,
   onChangeCoordinate: PropTypes.func.isRequired,

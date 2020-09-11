@@ -26,6 +26,7 @@ class App extends PureComponent {
           onPinClick={onPinClick}
           places={places}
           handlerSubmitForAdd={handlerSubmitForAdd}
+          handlerClickOnChoise={handlerClickOnChoise}
         />
       );
     } else {

@@ -17,7 +17,8 @@ class ChoicePlaces extends PureComponent {
       <form action="#" className="map__filters" autoComplete="off"
         onSubmit={this.handleSubmit}>
         <select name="choise-space" id="choise" className="map__choise" defaultValue="Екатеринбург" ref={this.menuRef}>
-          <option value="Ekaterinburg">Екатеринбург</option>
+          <option value="Ekaterinburg 801">Екатеринбург 8 этаж</option>
+          <option value="Ekaterinburg 901">Екатеринбург 9 этаж</option>
           <option value="Ryazan">Рязань</option>
           <option value="Samara">Самара</option>
         </select>
@@ -29,6 +30,7 @@ class ChoicePlaces extends PureComponent {
   handleSubmit(evt) {
     const {onChoiseOfficeClick} = this.props;
     evt.preventDefault();
+    console.log(`click`);
     onChoiseOfficeClick(this.menuRef.current.value);
   }
 

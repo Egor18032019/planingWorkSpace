@@ -36,8 +36,7 @@ const dataReducer = (state = initialState, action) => {
       let newPlace = action.payload;
       let index = stateDataRewriteArray.findIndex((it) => it.id === newPlace.id);
       if (index > -1) {
-        console.log(index);
-        console.log((!newPlace.coordinateX || !newPlace.coordinateY));
+        // если пин не двигали и сразу стали вводить номер р.м. то он ищет по номеру р.м. в масиве и  подставляет данные
         if (!newPlace.coordinateX || !newPlace.coordinateY) {
           newPlace.coordinateX = stateDataRewriteArray[index].coordinateX;
           newPlace.coordinateY = stateDataRewriteArray[index].coordinateY;
@@ -50,7 +49,6 @@ const dataReducer = (state = initialState, action) => {
         places: stateDataRewriteArray
       });
     case ActionType.ACTIVE_PLACE:
-      state.popup = null;
       return Object.assign({}, state, {
         popup: action.payload
       });
