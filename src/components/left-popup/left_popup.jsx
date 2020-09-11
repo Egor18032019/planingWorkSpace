@@ -167,8 +167,8 @@ class LeftPopup extends PureComponent {
             <div className="popup__photos">
               <img src={photo} className="popup__photo" width="45" height="40" alt="Фотография рм" />
             </div>
-            {/* <button className={`popup__button`} type="submit">
-              Коректировка </button> */}
+            <button className={`popup__button`} type="submit">
+              Коректировка </button>
           </form>
         </article>
       );
@@ -183,7 +183,6 @@ class LeftPopup extends PureComponent {
 
 LeftPopup.propTypes = {
   activePlace: PropTypes.object.isRequired,
-  company: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   onPinClick: PropTypes.func.isRequired,
   onClickActive: PropTypes.func.isRequired,
