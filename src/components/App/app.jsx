@@ -12,7 +12,6 @@ import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
   }
 
   _renderApp() {
