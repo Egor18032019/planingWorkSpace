@@ -1,31 +1,54 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
+// import React, {PureComponent, React.createRef} from "react";
+import * as React from "react";
+import { AdFormProps } from "../../types";
 
-// TODO: написать hoc элемент или подумать о хуке
-class AdForm extends PureComponent {
+interface State {
+  avatar: number | null,
+  avatarPreviewUrl: string | ArrayBuffer,
+  photo: string | null,
+  photoPreviewUrl: string | ArrayBuffer,
+}
+
+class AdForm extends React.PureComponent<AdFormProps, State> {
+  formRef: React.RefObject<HTMLFormElement>;
+  idRef: React.RefObject<HTMLInputElement> ;
+  titledRef: React.RefObject<HTMLInputElement>;
+  type: React.RefObject<HTMLSelectElement>;
+  departmens: React.RefObject<HTMLSelectElement>;
+  timein: React.RefObject<HTMLSelectElement>;
+  timeout: React.RefObject<HTMLSelectElement>;
+  otdel: React.RefObject<HTMLSelectElement>;
+  gender: React.RefObject<HTMLSelectElement>;
+  notebook: React.RefObject<HTMLInputElement>;
+  apllebook: React.RefObject<HTMLInputElement>;
+  sistemnik: React.RefObject<HTMLInputElement>;
+  telephone: React.RefObject<HTMLInputElement>;
+  description: React.RefObject<HTMLTextAreaElement>;
+  photo: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
     this.state = {
-      avatar: ``,
-      avatarPreviewUrl: ``,
+      avatar: null,
+      avatarPreviewUrl: null,
       photo: ``,
-      photoPreviewUrl: ``
+      photoPreviewUrl: `null`
     };
-    this.formRef = createRef();
-    this.idRef = createRef();
-    this.titledRef = createRef();
-    this.type = createRef();
-    this.departmens = createRef();
-    this.timein = createRef();
-    this.timeout = createRef();
-    this.otdel = createRef();
-    this.gender = createRef();
-    this.notebook = createRef();
-    this.apllebook = createRef();
-    this.sistemnik = createRef();
-    this.telephone = createRef();
-    this.description = createRef();
-    this.photo = createRef();
+    this.formRef = React.createRef();
+    this.idRef = React.createRef();
+    this.titledRef = React.createRef();
+    this.type = React.createRef();
+    this.departmens = React.createRef();
+    this.timein = React.createRef();
+    this.timeout = React.createRef();
+    this.otdel = React.createRef();
+    this.gender = React.createRef();
+    this.notebook = React.createRef();
+    this.apllebook = React.createRef();
+    this.sistemnik = React.createRef();
+    this.telephone = React.createRef();
+    this.description = React.createRef();
+    this.photo = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this._handleAvatarChange = this._handleAvatarChange.bind(this);
     this._handlePhotoChange = this._handlePhotoChange.bind(this);
@@ -34,27 +57,29 @@ class AdForm extends PureComponent {
 
 
   handleSubmit(evt) {
-    const {handlerSubmitForAdd, coordinateX, coordinateY} = this.props;
+    const { handlerSubmitForAdd, coordinateX, coordinateY } = this.props;
     evt.preventDefault();
-    handlerSubmitForAdd({
-      id: this.idRef.current.value,
-      titlle: this.titledRef.current.value,
-      avatar: this.state.avatarPreviewUrl,
-      company: this.type.current.value,
-      departmens: this.departmens.current.value,
-      timein: this.timein.current.value,
-      timeout: this.timeout.current.value,
-      otdel: this.otdel.current.value,
-      gender: this.gender.current.value,
-      notebook: this.notebook.current.checked,
-      apllebook: this.notebook.current.checked,
-      sistemnik: this.notebook.current.checked,
-      telephone: this.notebook.current.checked,
-      description: this.description.current.value,
-      photo: this.state.photoPreviewUrl,
-      coordinateX,
-      coordinateY,
-    });
+    handlerSubmitForAdd(
+      {
+        id: this.idRef.current.value,
+        titlle: this.titledRef.current.value,
+        avatar: this.state.avatarPreviewUrl,
+        company: this.type.current.value,
+        departmens: this.departmens.current.value,
+        timein: this.timein.current.value,
+        timeout: this.timeout.current.value,
+        otdel: this.otdel.current.value,
+        gender: this.gender.current.value,
+        notebook: this.notebook.current.checked,
+        apllebook: this.notebook.current.checked,
+        sistemnik: this.notebook.current.checked,
+        telephone: this.notebook.current.checked,
+        description: this.description.current.value,
+        photo: this.state.photoPreviewUrl,
+        coordinateX,
+        coordinateY,
+      }
+    );
   }
 
   _handleAvatarChange(e) {
@@ -97,18 +122,18 @@ class AdForm extends PureComponent {
   }
 
   render() {
-    const {isActive} = this.props;
-    let {avatarPreviewUrl, photoPreviewUrl} = this.state;
+    const { isActive } = this.props;
+    let { avatarPreviewUrl, photoPreviewUrl } = this.state;
     let imagePreview = null;
     let photoPreview = null;
     if (avatarPreviewUrl) {
-      imagePreview = (<img src={avatarPreviewUrl} />);
+      imagePreview = (<img src={`${avatarPreviewUrl}`} />);
     } else {
       imagePreview = (<img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44" />
       );
     }
     if (photoPreviewUrl) {
-      photoPreview = (<img src={photoPreviewUrl} />);
+      photoPreview = (<img src={`${photoPreviewUrl}`} />);
     } else {
       photoPreview = (<img src="img/muffin-grey.svg" alt="Аватар пользователя" width="40" height="44" />
       );
@@ -133,7 +158,7 @@ class AdForm extends PureComponent {
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--wide">
           <label className="ad-form__label" htmlFor="title">Информация о сотруднике</label>
-          <input id="title" name="title" type="text" maxLength="100" minLength="1" required
+          <input id="title" name="title" type="text" maxLength={100} minLength={1} required
             placeholder="Тут кто то новенький" ref={this.titledRef} />
         </fieldset>
         <fieldset className="ad-form__element ad-form__element--wide">
@@ -229,18 +254,8 @@ class AdForm extends PureComponent {
     или <button className="ad-form__reset" type="reset" onClick={this._handleReset}>очистить</button>
         </fieldset>
       </form>
-
     );
   }
 }
-
-
-AdForm.propTypes = {
-  handlerSubmitForAdd: PropTypes.func.isRequired,
-  pinMainCoordinate: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  coordinateX: PropTypes.number,
-  coordinateY: PropTypes.number,
-};
 
 export default AdForm;

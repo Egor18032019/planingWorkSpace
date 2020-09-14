@@ -1,3 +1,5 @@
+import { object } from "prop-types"
+
 type func = () => {}
 type noop = () => void
 
@@ -29,9 +31,18 @@ interface MainProps {
   places: [],
 };
 
+interface AdFormProps {
+  handlerSubmitForAdd: ({}) => {},
+  pinMainCoordinate: string,
+  isActive: boolean,
+  coordinateX: number,
+  coordinateY: number,
+};
+
 export {
   AppProps,
   MainProps,
+  AdFormProps,
   func,
   noop,
 }

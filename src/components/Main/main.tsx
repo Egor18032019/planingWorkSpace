@@ -1,7 +1,7 @@
 import * as React from "react";
 import MapPin from "../map-pin/map_pin.jsx";
 import Pins from "../pins/pins.jsx";
-import AdForm from "../ad-form/ad_form.jsx";
+import AdForm from "../ad-form/ad_form";
 import LeftPopup from "../left-popup/left_popup.jsx";
 import MapFilter from "../map-filter/map_filter.jsx";
 import withPopup from "../../hoc/whit-popup/whit_popup.jsx";
