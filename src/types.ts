@@ -13,12 +13,13 @@ interface AppProps {
 
 interface MainProps {
   onPinClick: func,
-  handlerClickOnChoise: func,
   onClickActive: func,
-  onChangeCoordinateY: func,
+  onMovePoint: func,
   onChangeCoordinate: func,
+  onChangeCoordinateY: func,
   onChangeCoordinateX: func,
   handlerSubmitForAdd: func,
+  handlerClickOnChoise: func,
   activeOffice: string,
   coordinateX: number,
   coordinateY: number,

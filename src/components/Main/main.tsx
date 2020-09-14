@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import MapPin from "../map-pin/map_pin.jsx";
 import Pins from "../pins/pins.jsx";
 import AdForm from "../ad-form/ad_form.jsx";
@@ -9,8 +8,10 @@ import withPopup from "../../hoc/whit-popup/whit_popup.jsx";
 const PopupWrapped = withPopup(LeftPopup);
 import {arrayBackGroundImage} from "../../const.js";
 import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
+import {MainProps} from "../../types";
 
-const Main = (props) => {
+
+const Main = (props:MainProps) => {
 
   const {activeOffice, isActive, onChangeCoordinate, pinMainCoordinate, onChangeCoordinateY,
     onChangeCoordinateX, coordinateX, coordinateY, activePlace,
@@ -70,26 +71,7 @@ const Main = (props) => {
       </section>
     </main >
   );
-
-
 };
 
-Main.propTypes = {
-  onPinClick: PropTypes.func.isRequired,
-  handlerClickOnChoise: PropTypes.func.isRequired,
-  onMovePoint: PropTypes.func.isRequired,
-  onClickActive: PropTypes.func.isRequired,
-  onChangeCoordinateY: PropTypes.func.isRequired,
-  onChangeCoordinate: PropTypes.func.isRequired,
-  onChangeCoordinateX: PropTypes.func.isRequired,
-  handlerSubmitForAdd: PropTypes.func.isRequired,
-  activeOffice: PropTypes.string,
-  coordinateX: PropTypes.number,
-  coordinateY: PropTypes.number,
-  isActive: PropTypes.bool.isRequired,
-  activePlace: PropTypes.object,
-  pinMainCoordinate: PropTypes.string,
-  places: PropTypes.array.isRequired,
-};
 
 export default Main;

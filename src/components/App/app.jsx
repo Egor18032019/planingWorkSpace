@@ -4,7 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionActive, ActionPlace} from "../../reducer/data-reducer/data-reducer.js";
 import {getActiveOffice, getActivePage, getPopup, getPlaces} from "../../reducer/selectors.js";
-import Main from "../Main/main.jsx";
+import Main from "../Main/main.tsx";
 import withMain from "../../hoc/whit-main/whit-main.js";
 const MainWrapped = withMain(Main);
 import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
