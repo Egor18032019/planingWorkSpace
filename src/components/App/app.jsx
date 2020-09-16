@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {ActionActive, ActionPlace} from "../../reducer/data-reducer/data-reducer.js";
 import {getActiveOffice, getActivePage, getPopup, getPlaces} from "../../reducer/selectors.js";
 import Main from "../Main/main.tsx";
-import withMain from "../../hoc/whit-main/whit-main.js";
+import withMain from "../../hoc/whit-main/whit-main";
 const MainWrapped = withMain(Main);
 import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
 
@@ -90,11 +90,11 @@ const mapStateToProps = (store) => {
 
 App.propTypes = {
   onPinClick: PropTypes.func.isRequired,
-  handlerClickOnChoise: PropTypes.func.isRequired,
   handlerSubmitForAdd: PropTypes.func.isRequired,
+  handlerClickOnChoise: PropTypes.func.isRequired,
   activeOffice: PropTypes.string,
-  activePage: PropTypes.string.isRequired,
   places: PropTypes.array.isRequired,
+  activePage: PropTypes.string.isRequired,
   activePlace: PropTypes.object,
 };
 

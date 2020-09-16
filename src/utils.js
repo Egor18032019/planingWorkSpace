@@ -19,6 +19,9 @@ const forSpaceFilter = (place, filter) => {
   return place;
 };
 
+
+// TODO: сделать тест на функцию сортировки
+
 /**
  * Функция сортировки
  * @param {*} data массив с данными

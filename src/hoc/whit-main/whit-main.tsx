@@ -1,15 +1,24 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface State {
+  isActive: boolean,
+  coordinateY: number | null,
+  coordinateX: number | null,
+  pinMainCoordinate: string | null
+}
 
 const withMain = (Component) => {
-  class WithMain extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+
+  class WithMain extends React.PureComponent<P,State>{
     constructor(props) {
       super(props);
-
       this.state = {
         isActive: false,
-        pinMainCoordinate: ``,
         coordinateY: null,
         coordinateX: null,
+        pinMainCoordinate: ``,
       };
     }
     render() {
@@ -27,11 +36,9 @@ const withMain = (Component) => {
           onChangeCoordinateX={(coordinate)=>{
             this.setState({coordinateX: coordinate});
           }}
-
           onChangeCoordinateY={(coordinate)=>{
             this.setState({coordinateY: coordinate});
           }}
-
           onClickActive={()=>{
             this.setState({isActive: true});
           }}
@@ -40,7 +47,6 @@ const withMain = (Component) => {
       );
     }
   }
-
   return WithMain;
 };
 
