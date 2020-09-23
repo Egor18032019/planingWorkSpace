@@ -216,7 +216,7 @@ fieldset {
 .map__pin--main {
   width: 65px;
   height: 55px;
-
+  z-index: 9;
   cursor: move;
 }
 

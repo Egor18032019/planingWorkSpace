@@ -30,7 +30,6 @@ class ChoicePlaces extends PureComponent {
   handleSubmit(evt) {
     const {onChoiseOfficeClick} = this.props;
     evt.preventDefault();
-    console.log(`click`);
     onChoiseOfficeClick(this.menuRef.current.value);
   }
 
