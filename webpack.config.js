@@ -7,7 +7,7 @@ module.exports = {
     // файл сборки (бандл) назвали bundle.js;
     filename: `bundle.js`,
     // eslint-disable-next-line no-undef
-    path: path.join(__dirname, `src`)// абсолютный путь до public где будет лежать bundle.js
+    path: path.join(__dirname, `src`) // абсолютный путь до public где будет лежать bundle.js
   },
   devServer: {
     // eslint-disable-next-line no-undef
@@ -17,15 +17,18 @@ module.exports = {
     port: 800, // - порт в котором открывается
     historyApiFallback: true // для react-router-dom
   },
-  module: {// как преобразуються файлы для webpacka
-    rules: [
-      {
-        test: /\.(js|jsx)$/, // те типы файлов котоорые проверям
-        exclude: /node_modules/, // исключаем из проверки
-        use: {
-          loader: `babel-loader`,
-        },
-      }
+  module: { // как преобразуються файлы для webpacka
+    rules: [{
+      test: /\.(js|jsx)$/, // те типы файлов котоорые проверям
+      exclude: /node_modules/, // исключаем из проверки
+      use: {
+        loader: `babel-loader`,
+      },
+    },
+    {
+      test: /\.(tsx|ts)?$/,
+      loader: `ts-loader`
+    },
     ],
   },
   resolve: {

@@ -2,6 +2,10 @@ import {
   workedPlaceOnOffice
 } from "../../const.js";
 
+import {
+  onSortPins
+} from "../../utils.js";
+
 // Определяем действия(actions)
 const ActionType = {
   ADD_PLACE: `CHANGE_OFFICE`,
@@ -20,8 +24,6 @@ const initialState = {
   originalPlaces: []
 };
 
-// Редьюсер. Функция-редьюсер принимает в качестве параметров текущий state и действие (action).
-// Результатом выполнение редьюсера станет новое состояние.
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_OFFERS:
@@ -63,34 +65,6 @@ const dataReducer = (state = initialState, action) => {
   return state;
 };
 
-const forCompanyFilter = (place, filter) => {
-  return place.company === filter.company || filter.company === `any`;
-};
-const forDepartamensFilter = (place, filter) => {
-  return place.departmens === filter.departmens || filter.departmens === `any`;
-};
-const forOtdelFilter = (place, filter) => {
-  return place.otdel === filter.otdel || filter.otdel === `any`;
-};
-const forGenderFilter = (place, filter) => {
-  return place.gender === filter.gender || filter.gender === `any`;
-};
-const forSpaceFilter = (place, filter) => {
-  if (filter.space < 1) {
-    return place.titlle === ``;
-  } else if (filter.space > 0) {
-    return place.titlle.length > 1;
-  }
-  return place;
-};
-const onSortPins = (data, filter) => {
-  return data.filter((place) => {
-    return forCompanyFilter(place, filter) && forDepartamensFilter(place, filter) &&
-      forOtdelFilter(place, filter) && forSpaceFilter(place, filter) && forGenderFilter(place, filter);
-  });
-
-
-};
 
 const ActionActive = {
   activeState: (place) => ({
