@@ -144,7 +144,6 @@ fieldset {
 /**
    * Метка объявления
    */
-
 .map__pin {
   position: absolute;
   z-index: 1;
@@ -156,12 +155,23 @@ fieldset {
 
   border: 0;
   background: none;
+  cursor: pointer;
 }
 
 .map__pin:focus {
   outline: none;
   -webkit-filter: drop-shadow(0 0 5px red);
   filter: drop-shadow(0 0 5px red);
+}
+
+
+.map__pin span {
+  z-index: 2;
+  color: #000000;
+  background-color: white;
+  display: inline-block;
+  width: 100%;
+  font-size: 13px;
 }
 
 .map__pin img {
@@ -186,8 +196,7 @@ fieldset {
   top: 0;
   left: 0;
 
-  /* background-image: url("../img/pins.svg"); */
-  border: 1px solid orange;
+  border: 2px solid orange;
   background-repeat: no-repeat;
   background-position: 0 -9px;
 }
@@ -195,7 +204,7 @@ fieldset {
 .map__pin:not(.map__pin--main):hover::after,
 .map__pin:not(.map__pin--main):active::after,
 .map__pin--active:not(.map__pin--main)::after {
-  background-position: 0 -88px;
+  box-shadow: 0 0 15px 15px rgba(22, 202, 31, 0.7);
 }
 
 .map__pin:active img,
@@ -588,9 +597,11 @@ fieldset {
   display: block;
   padding-bottom: 5px;
 }
+
 .popup-form__element {
   display: flex;
 }
+
 .popup-form__element input,
 .popup-form__element select,
 .popup-form__element textarea {
@@ -843,6 +854,7 @@ fieldset {
   background-color: white;
   border: 4px solid #ffaa99;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .ad-form__submit:hover,

@@ -22,7 +22,6 @@ class MapFilter extends PureComponent {
   }
 
   handleFilter() {
-    console.log(`Сработал фильтр: ` + this.notebook.current.value);
     const {handleFilterChange} = this.props;
     handleFilterChange({
       company: this.companyRef.current.value,
@@ -83,16 +82,16 @@ class MapFilter extends PureComponent {
 
           <fieldset id="work-features" className="map__features" onChange={this.handleFilter}>
             <input type="checkbox" name="features" value="notebook" id="filter-notebook"
-              className="map__checkbox visually-hidden" ref={this.notebook}/>
+              className="map__checkbox visually-hidden" ref={this.notebook} />
             <label className="map__feature map__feature--notebook" htmlFor="filter-notebook">Ноутбук</label>
             <input type="checkbox" name="features" value="apllebook" id="filter-apllebook"
-              className="map__checkbox visually-hidden" ref={this.apllebook}/>
+              className="map__checkbox visually-hidden" ref={this.apllebook} />
             <label className="map__feature map__feature--apllebook" htmlFor="filter-apllebook">Макбук</label>
             <input type="checkbox" name="features" value="sistemnik" id="filter-sistemnik"
-              className="map__checkbox visually-hidden" ref={this.sistemnik}/>
+              className="map__checkbox visually-hidden" ref={this.sistemnik} />
             <label className="map__feature map__feature--sistemnik" htmlFor="filter-sistemnik">Системный блок</label>
             <input type="checkbox" name="features" value="telephone" id="filter-telephone"
-              className="map__checkbox visually-hidden" ref={this.telephone}/>
+              className="map__checkbox visually-hidden" ref={this.telephone} />
             <label className="map__feature map__feature--telephone" htmlFor="filter-telephone">Рабочий телефон</label>
           </fieldset>
         </form>

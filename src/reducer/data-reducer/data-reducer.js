@@ -1,6 +1,10 @@
-import {workedPlaceOnOffice} from "../../const.js";
+import {
+  workedPlaceOnOffice
+} from "../../const.js";
 
-import {onSortPins} from "../../utils.js";
+import {
+  onSortPins
+} from "../../utils.js";
 
 // Определяем действия(actions)
 const ActionType = {
@@ -53,7 +57,6 @@ const dataReducer = (state = initialState, action) => {
     case ActionType.FILTER_OFFERS:
       let statePlaceRewriteForFilter = [...state.originalPlaces];
       let filter = action.payload;
-      console.log(filter);
       let filterPlaces = onSortPins(statePlaceRewriteForFilter, filter);
       return Object.assign({}, state, {
         places: filterPlaces
