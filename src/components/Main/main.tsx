@@ -35,7 +35,7 @@ const Main = (props:MainProps) => {
         />
         : ``}
       {/* <!-- Карта рабочих мест --> */}
-      <section className={`map ${!isActive ? `map--faded` : ``}`} style={{backgroundImage: `url(` + `${BGI}` + `)`}}>
+      <section className={`map ${!isActive ? `map--faded` : ``}`} >
         <MapPin
           isActive={isActive}
           onClickForActive={onClickActive}
@@ -50,7 +50,7 @@ const Main = (props:MainProps) => {
           onPinClick={onPinClick}
           places={places}
         />
-        <div className="map__pins">
+        <div className="map__pins" style={{backgroundImage: `url(` + `${BGI}` + `)`}}>
           <div className="map__overlay">
             <h2 className="map__title">г.{activeOffice} офис</h2>
           </div>

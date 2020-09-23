@@ -105,6 +105,10 @@ fieldset {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
 }
 
 .map__overlay {
