@@ -53,6 +53,7 @@ const dataReducer = (state = initialState, action) => {
     case ActionType.FILTER_OFFERS:
       let statePlaceRewriteForFilter = [...state.originalPlaces];
       let filter = action.payload;
+      console.log(filter);
       let filterPlaces = onSortPins(statePlaceRewriteForFilter, filter);
       return Object.assign({}, state, {
         places: filterPlaces

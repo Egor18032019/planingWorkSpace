@@ -10,6 +10,18 @@ const forOtdelFilter = (place, filter) => {
 const forGenderFilter = (place, filter) => {
   return place.gender === filter.gender || filter.gender === `any`;
 };
+const forNotebookFilter = (place, filter) => {
+  return place.notebook === filter.notebook || filter.notebook === false;
+};
+const forApllebookFilter = (place, filter) => {
+  return place.apllebook === filter.apllebook || filter.apllebook === false;
+};
+const forSistemnikFilter = (place, filter) => {
+  return place.sistemnik === filter.sistemnik || filter.sistemnik === false;
+};
+const forTelephoneFilter = (place, filter) => {
+  return place.telephone === filter.telephone || filter.telephone === false;
+};
 const forSpaceFilter = (place, filter) => {
   if (filter.space < 1) {
     return place.titlle === ``;
@@ -31,7 +43,9 @@ const forSpaceFilter = (place, filter) => {
 const onSortPins = (data, filter) => {
   return data.filter((place) => {
     return forCompanyFilter(place, filter) && forDepartamensFilter(place, filter) &&
-      forOtdelFilter(place, filter) && forSpaceFilter(place, filter) && forGenderFilter(place, filter);
+      forOtdelFilter(place, filter) && forSpaceFilter(place, filter) && forGenderFilter(place, filter)
+      && forNotebookFilter(place, filter) && forApllebookFilter(place, filter) && forSistemnikFilter(place, filter)
+      && forTelephoneFilter(place, filter);
   });
 };
 
