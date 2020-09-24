@@ -30,9 +30,11 @@ class App extends PureComponent {
       );
     } else {
       return (
-        <ChoicePlaces
-          onChoiseOfficeClick={handlerClickOnChoise}
-        />
+        <div>
+          <ChoicePlaces
+            onChoiseOfficeClick={handlerClickOnChoise}
+          />
+        </div>
       );
     }
   }

@@ -353,6 +353,36 @@ fieldset {
   background-color: rgba(3, 28, 45, 0.5);
 }
 
+.btn {
+  display: flex;
+
+}
+
+a.btn-primary {
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+  border-radius: 4px;
+  color: black;
+  display: block;
+  width: 120px;
+  margin: 20px auto;
+  font-size: 14px;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+a.btn-primary:hover,
+a.btn-primary:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+  outline: 0 none;
+}
+
 .map__filters {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -360,9 +390,9 @@ fieldset {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
+  /* -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center;
+  justify-content: center; */
 
   width: 960px;
   height: 46px;
