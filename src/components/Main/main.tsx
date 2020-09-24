@@ -6,16 +6,17 @@ import LeftPopup from "../left-popup/left_popup.jsx";
 import MapFilter from "../map-filter/map_filter.jsx";
 import withPopup from "../../hoc/whit-popup/whit_popup.jsx";
 const PopupWrapped = withPopup(LeftPopup);
-import {arrayBackGroundImage} from "../../const.js";
+import { arrayBackGroundImage } from "../../const.js";
 import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
-import {MainProps} from "../../types";
+import CSVDowland from "../csv-button/csv_button.jsx";
+import { MainProps } from "../../types";
 
 
-const Main = (props:MainProps) => {
+const Main = (props: MainProps) => {
 
-  const {activeOffice, isActive, onChangeCoordinate, pinMainCoordinate, onChangeCoordinateY,
+  const { activeOffice, isActive, onChangeCoordinate, pinMainCoordinate, onChangeCoordinateY,
     onChangeCoordinateX, coordinateX, coordinateY, activePlace,
-    onPinClick, places, handlerSubmitForAdd, handlerClickOnChoise, onClickActive, onMovePoint} = props;
+    onPinClick, places, handlerSubmitForAdd, handlerClickOnChoise, onClickActive, onMovePoint } = props;
   const BGI = arrayBackGroundImage[activeOffice];
 
   return (
@@ -23,9 +24,16 @@ const Main = (props:MainProps) => {
       <div className="promo">
         <h1 className="promo__title visually-hidden">Планировщик рабочих мест</h1>
         {isActive ?
-          <ChoicePlaces
-            onChoiseOfficeClick={handlerClickOnChoise}
-          /> : ``
+          <div>
+            <ChoicePlaces
+              onChoiseOfficeClick={handlerClickOnChoise}
+            />
+            <CSVDowland
+              activeOffice={activeOffice}
+              places={places}
+            />
+          </div>
+          : ``
         }
       </div>
       {activePlace ?
@@ -50,7 +58,7 @@ const Main = (props:MainProps) => {
           onPinClick={onPinClick}
           places={places}
         />
-        <div className="map__pins" style={{backgroundImage: `url(` + `${BGI}` + `)`}}>
+        <div className="map__pins" style={{ backgroundImage: `url(` + `${BGI}` + `)` }}>
           <div className="map__overlay">
             <h2 className="map__title">г.{activeOffice} офис</h2>
           </div>
