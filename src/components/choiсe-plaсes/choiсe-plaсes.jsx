@@ -22,7 +22,7 @@ class ChoicePlaces extends PureComponent {
           <option value="Ryazan">Рязань</option>
           <option value="Samara">Самара</option>
         </select>
-        <button> Загрузить выбранный офис</button>
+        <button> Выбрать офис</button>
       </form>
     );
   }
