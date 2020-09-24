@@ -170,7 +170,7 @@ fieldset {
   color: #000000;
   background-color: white;
   display: inline-block;
-  width: 100%;
+  width: 20px;
   font-size: 13px;
 }
 
@@ -205,6 +205,34 @@ fieldset {
 .map__pin:not(.map__pin--main):active::after,
 .map__pin--active:not(.map__pin--main)::after {
   box-shadow: 0 0 15px 15px rgba(22, 202, 31, 0.7);
+  border: none;
+}
+
+.map__pin:not(.map__pin--main):focus::after {
+  border: none;
+}
+
+.map__pin:not(.map__pin--main):focus {
+  outline: none;
+  -webkit-filter: none;
+  filter: none;
+}
+
+
+.map__pin:not(.map__pin--main):focus {
+  width: 30px;
+  height: 30px;
+  border: 2px solid orange;
+  box-shadow: 0 0 15px 15px rgba(255, 86, 53, 0.7);
+  background-color: white;
+  z-index: 9;
+}
+
+.map__pin:not(.map__pin--main):focus span {
+  color: #000000;
+  font-weight: bold;
+  margin: auto;
+  width: 30px;
 }
 
 .map__pin:active img,
@@ -216,7 +244,7 @@ fieldset {
 .map__pin--main {
   width: 65px;
   height: 55px;
-
+  z-index: 9;
   cursor: move;
 }
 

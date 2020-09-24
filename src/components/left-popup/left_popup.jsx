@@ -32,7 +32,6 @@ class LeftPopup extends PureComponent {
   handleCorrect(evt) {
     const {onClickActive, isActive} = this.props;
     if (isActive) {
-      console.log(`отправляю диспатчером`);
       evt.target.reset();
     }
     onClickActive();
@@ -77,7 +76,7 @@ class LeftPopup extends PureComponent {
               ref={this.fieldsetId}>
               <label className="popup-form__label" htmlFor="address"></label>
               <input id="address" name="address" type="text"
-                value={`Рабочее место № ` + id} ref={this.idRef} readOnly/>
+                value={`Рабочее место № ` + id} ref={this.idRef} readOnly />
             </fieldset>
             <fieldset className="popup-form__element" disabled={!isActive} ref={this.fieldsetType}>
               <select id="company" name="company" value={company} ref={this.type} className="select-css"
@@ -133,25 +132,25 @@ class LeftPopup extends PureComponent {
                 className="feature__checkbox visually-hidden" ref={this.notebook} checked={checkedNotebook}
                 onChange={(evt) => {
                   this.handleChange(evt, evt.target.value);
-                }}/>
+                }} />
               <label className="feature popup__feature popup__feature--notebook" htmlFor="feature-notebook" title="Ноутбук">Ноутбук</label>
               <input type="checkbox" name="features" value="apllebook" id="feature-apllebook"
                 className="feature__checkbox visually-hidden" ref={this.apllebook} checked={checkedApplebook}
                 onChange={(evt) => {
                   this.handleChange(evt, evt.target.value);
-                }}/>
+                }} />
               <label className="feature popup__feature popup__feature--apllebook" htmlFor="feature-apllebook" title="МакБук">МакБук</label>
               <input type="checkbox" name="features" value="sistemnik" id="feature-sistemnik"
                 className="feature__checkbox visually-hidden" ref={this.sistemnik} checked={checkedSistemnik}
                 onChange={(evt) => {
                   this.handleChange(evt, evt.target.value);
-                }}/>
+                }} />
               <label className="feature popup__feature popup__feature--sistemnik" htmlFor="feature-sistemnik" title="Системный блок">Системный блок</label>
               <input type="checkbox" name="features" value="telephone" id="feature-telephone"
                 className="feature__checkbox visually-hidden" ref={this.telephone} checked={checkedTelephone}
                 onChange={(evt) => {
                   this.handleChange(evt, evt.target.value);
-                }}/>
+                }} />
               <label className="feature popup__feature popup__feature--telephone" htmlFor="feature-telephone" title="Стационарный телефон">Стационарный телефон</label>
             </fieldset>
 
@@ -167,8 +166,8 @@ class LeftPopup extends PureComponent {
             <div className="popup__photos">
               <img src={photo} className="popup__photo" width="45" height="40" alt="Фотография рм" />
             </div>
-            <button className={`popup__button`} type="submit">
-              Коректировка </button>
+            {/* <button className={`popup__button`} type="submit">
+              Коректировка </button> */}
           </form>
         </article>
       );
