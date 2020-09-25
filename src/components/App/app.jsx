@@ -8,6 +8,7 @@ import Main from "../Main/main.tsx";
 import withMain from "../../hoc/whit-main/whit-main";
 const MainWrapped = withMain(Main);
 import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
+import ImportButton from "../import-button/import_button.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -16,7 +17,7 @@ class App extends PureComponent {
 
   _renderApp() {
     const {activeOffice, handlerClickOnChoise, activePage, activePlace, onPinClick,
-      places, handlerSubmitForAdd} = this.props;
+      places, handlerSubmitForAdd, getNewData} = this.props;
     if (activePage === `officePage`) {
       return (
         <MainWrapped
@@ -33,6 +34,9 @@ class App extends PureComponent {
         <div>
           <ChoicePlaces
             onChoiseOfficeClick={handlerClickOnChoise}
+          />
+          <ImportButton
+            getNewData={getNewData}
           />
         </div>
       );
@@ -68,6 +72,9 @@ const mapDispatchToTitle = (dispatch) => ({
   handlerClickOnChoise(place) {
     dispatch(ActionActive.activeState(place));
   },
+  getNewData(newDataObj) {
+    dispatch(ActionActive.activeNewState(newDataObj));
+  },
   onPinClick(activePlace) {
     dispatch(ActionActive.activePopup(activePlace));
   },
@@ -92,6 +99,7 @@ const mapStateToProps = (store) => {
 
 App.propTypes = {
   onPinClick: PropTypes.func.isRequired,
+  getNewData: PropTypes.func.isRequired,
   handlerSubmitForAdd: PropTypes.func.isRequired,
   handlerClickOnChoise: PropTypes.func.isRequired,
   activeOffice: PropTypes.string,

@@ -12,6 +12,7 @@ const ActionType = {
   ACTIVE_PLACE: `ACTIVE_PLACE`,
   GET_OFFERS: `GET_OFFERS`,
   FILTER_OFFERS: `FILTER_OFFERS`,
+  GET_OFFERS_FAIL: `GET_OFFERS_FAIL`,
 };
 
 
@@ -32,6 +33,13 @@ const dataReducer = (state = initialState, action) => {
         office: action.office,
         originalPlaces: workedPlaceOnOffice[action.office],
         places: workedPlaceOnOffice[action.office]
+      });
+    case ActionType.GET_OFFERS_FAIL:
+      return Object.assign({}, state, {
+        page: `officePage`,
+        office: action.payload.name,
+        originalPlaces: action.payload.place,
+        places: action.payload.place
       });
     case ActionType.ADD_PLACE:
       let stateDataRewriteArray = [...state.places];
@@ -70,6 +78,10 @@ const ActionActive = {
   activeState: (place) => ({
     type: ActionType.GET_OFFERS, // обязательно поле type
     office: place
+  }),
+  activeNewState: (newDataObj) => ({
+    type: ActionType.GET_OFFERS_FAIL, // обязательно поле type
+    payload: newDataObj
   }),
   activePopup: (place) => ({
     type: ActionType.ACTIVE_PLACE,

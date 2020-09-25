@@ -9,10 +9,6 @@ class CSVDowland extends PureComponent {
 
   }
 
-  componentDidMount() {
-  }
-
-
   render() {
     const {activeOffice, places} = this.props;
     return (
