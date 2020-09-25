@@ -16,8 +16,8 @@ const withPopup = (Component) => {
     }
     onChange(evt, value) {
       let changeState = evt.target.name;
-      console.log(`changeState - `, changeState);
-      console.log(`valueWP = `, value);
+      // console.log(`changeState - `, changeState);
+      // console.log(`valueWP = `, value);
 
       if (changeState === `titlle`) {
         this.setState({titlleCurrent: value});
@@ -29,13 +29,12 @@ const withPopup = (Component) => {
     }
     onClickActive() {
       if (this.state.isActive) {
-        console.log({
-          id: this.props.activePlace.id,
-          titlle: this.state.titlleCurrent,
-          company: this.state.companyCurrent,
-          description: this.state.descriptionCurrent
-        });
-
+        // console.log({
+        //   id: this.props.activePlace.id,
+        //   titlle: this.state.titlleCurrent,
+        //   company: this.state.companyCurrent,
+        //   description: this.state.descriptionCurrent
+        // });
       }
       this.setState({isActive: !this.state.isActive});
     }

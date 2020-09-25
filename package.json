@@ -9,7 +9,7 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
     "eslint": "npm run eslint.js && npm run eslint.ts",
-    "eslint.js": "eslint --ext .jsx --ext .js src/ --config .eslintrc.yml",
+    "eslint.js": "eslint --ext .jsx --ext .js src/",
     "eslint.ts": "eslint --ext .tsx --ext .ts src/ --config .eslintrc-ts.yml ",
     "test": "npm run eslint && npm run test.jest",
     "test.jest": "jest",
@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "leaflet": "1.6.0",
+    "papaparse": "^5.3.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-csv": "^2.0.3",
