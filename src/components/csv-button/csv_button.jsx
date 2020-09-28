@@ -20,7 +20,7 @@ class CSVDowland extends PureComponent {
           className="btn btn-primary"
           target="_blank"
         >
-          Экпорт в Excell
+          Экпорт в Excel
         </CSVLink>
       </div>);
   }
