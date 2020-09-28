@@ -2,14 +2,14 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import Pin from "./pin/pin.jsx";
-// Метка объявлений
 
+// Метка объявлений
 class Pins extends PureComponent {
   constructor(props) {
     super(props);
   }
   render() {
-    const {places, onPinClick} = this.props;
+    const {places, onPinClick, activePlace} = this.props;
 
     if (places.length > 0) {
       return (
@@ -18,6 +18,7 @@ class Pins extends PureComponent {
               return (
                 <Pin
                   place={place}
+                  activePlace={activePlace}
                   onPinClick={onPinClick}
                   key={place.id + place.titlle}
                 />
@@ -35,6 +36,7 @@ class Pins extends PureComponent {
 Pins.propTypes = {
   onPinClick: PropTypes.func.isRequired,
   places: PropTypes.array.isRequired,
+  activePlace: PropTypes.object || null
 };
 
 export default Pins;

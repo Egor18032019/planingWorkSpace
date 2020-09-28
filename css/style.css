@@ -201,13 +201,13 @@ fieldset {
   background-position: 0 -9px;
 }
 
-.map__pin:not(.map__pin--main):hover::after,
-.map__pin:not(.map__pin--main):active::after,
-.map__pin--active:not(.map__pin--main)::after {
+.map__pin:not(.map__pin--main):not(.active):hover::after {
   box-shadow: 0 0 15px 15px rgba(22, 202, 31, 0.7);
-  border: none;
+
 }
 
+
+.map__pin:not(.map__pin--main):active::after,
 .map__pin:not(.map__pin--main):focus::after {
   border: none;
 }
@@ -218,14 +218,20 @@ fieldset {
   filter: none;
 }
 
+.active.map__pin::after {
+  border: none;
+}
 
-.map__pin:not(.map__pin--main):focus {
+.active {
   width: 30px;
   height: 30px;
   border: 2px solid orange;
   box-shadow: 0 0 15px 15px rgba(255, 86, 53, 0.7);
   background-color: white;
   z-index: 9;
+  outline: none;
+  -webkit-filter: none;
+  filter: none;
 }
 
 .map__pin:not(.map__pin--main):focus span {
@@ -1076,7 +1082,6 @@ a.btn-primary:focus {
 /**
    * Карточка объявления
    */
-
 .map__card {
   position: absolute;
   z-index: 2;
@@ -1090,6 +1095,40 @@ a.btn-primary:focus {
 
   border-radius: 5px;
   background-color: #e6fcd4;
+}
+
+/* меню справа */
+.menu {
+  position: absolute;
+  z-index: 2;
+  top: 150px;
+  right: 20px;
+
+  padding: 10px 10px 20px;
+  width: 230px;
+
+  font-size: 12px;
+
+  border-radius: 5px;
+  background-color: #e6fcd4;
+}
+
+.menu-text {
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  background-color: inherit;
+  border: none;
+  color: #000000;
+}
+
+.menu-list_item {
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+  background-color: inherit;
+  border: none;
+  color: #000000;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .popup-form--disabled {

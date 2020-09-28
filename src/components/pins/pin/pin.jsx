@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Pin = (props) => {
-  const {place} = props;
+  const {place, activePlace} = props;
 
   function onPinClickForPopup() {
     // ожидаю что при клике на другой пин и передачи  onPinClick(null);
@@ -16,6 +16,10 @@ const Pin = (props) => {
   }
 
   if (place) {
+    let classForActive = ``;
+    if (place === activePlace) {
+      classForActive = `active`;
+    }
     const {coordinateX, coordinateY, id} = place;
     /**
      * Ширина пина
@@ -26,7 +30,7 @@ const Pin = (props) => {
     let coordinateXcurrent = coordinateX + pinWidth + `px`;
     let coordinateYcurrent = coordinateY + pinHeight + `px`;
     return (
-      <button type="button" className="map__pin" style={{left: coordinateXcurrent, top: coordinateYcurrent}}
+      <button type="button" className={`map__pin ` + classForActive} style={{left: coordinateXcurrent, top: coordinateYcurrent}}
         onClick={onPinClickForPopup}>
         {/* если картинку то не видно номера места. Подумать про другие варианты */}
         {/* <img src="img/avatars/user02.png" width="20" height="20" draggable="false"
