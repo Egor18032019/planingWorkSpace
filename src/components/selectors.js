@@ -1,5 +1,5 @@
 // import {createSelector} from "reselect";
-import NameSpace from "./name-space.js";
+import NameSpace from "../components/name-space.js";
 
 const getActiveOffice = (state) => {
   return state[NameSpace.DATA].office;

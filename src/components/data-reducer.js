@@ -1,10 +1,10 @@
 import {
   workedPlaceOnOffice
-} from "../../const.js";
+} from "../const.js";
 
 import {
   onSortPins
-} from "../../utils.js";
+} from "../utils.js";
 
 // Определяем действия(actions)
 const ActionType = {

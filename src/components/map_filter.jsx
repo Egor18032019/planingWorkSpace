@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import PropTypes from "prop-types";
 
-import {ActionActive} from "../../reducer/data-reducer/data-reducer.js";
+import {ActionActive} from "./data-reducer.js";
 
 /* <!-- Фильтрация объявлений --> */
 class MapFilter extends PureComponent {

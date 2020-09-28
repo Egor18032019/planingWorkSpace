@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-import Pin from "./pin/pin.jsx";
+import Pin from "./pin.jsx";
 
 // Метка объявлений
 class Pins extends PureComponent {

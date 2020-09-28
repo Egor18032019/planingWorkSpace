@@ -2,13 +2,13 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionActive, ActionPlace} from "../../reducer/data-reducer/data-reducer.js";
-import {getActiveOffice, getActivePage, getPopup, getPlaces} from "../../reducer/selectors.js";
-import Main from "../Main/main.tsx";
-import withMain from "../../hoc/whit-main/whit-main";
+import {ActionActive, ActionPlace} from "./data-reducer.js";
+import {getActiveOffice, getActivePage, getPopup, getPlaces} from "./selectors.js";
+import Main from "./main.tsx";
+import withMain from "./whit-main";
 const MainWrapped = withMain(Main);
-import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
-import ImportButton from "../import-button/import_button.jsx";
+import ChoicePlaces from "./choiсe-plaсes.jsx";
+import ImportButton from "./import_button.jsx";
 
 class App extends PureComponent {
   constructor(props) {

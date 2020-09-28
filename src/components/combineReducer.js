@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {dataReducer} from '../reducer/data-reducer/data-reducer.js';
+import {dataReducer} from '../components/data-reducer.js';
 // import {usersReducer} from './user/user-reducer';
 import NameSpace from "./name-space.js";
 

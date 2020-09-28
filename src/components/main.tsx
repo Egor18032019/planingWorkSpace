@@ -1,16 +1,16 @@
 import * as React from "react";
-import MapPin from "../map-pin/map_pin.jsx";
-import Pins from "../pins/pins.jsx";
-import AdForm from "../ad-form/ad_form";
-import LeftPopup from "../left-popup/left_popup.jsx";
-import MapFilter from "../map-filter/map_filter.jsx";
-import withPopup from "../../hoc/whit-popup/whit_popup.jsx";
+import MapPin from "./map_pin.jsx";
+import Pins from "./pins.jsx";
+import AdForm from "./ad_form";
+import LeftPopup from "./left_popup.jsx";
+import MapFilter from "./map_filter.jsx";
+import withPopup from "./whit_popup.jsx";
 const PopupWrapped = withPopup(LeftPopup);
-import { arrayBackGroundImage } from "../../const.js";
-import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
-import CSVDowland from "../csv-button/csv_button.jsx";
-import RightMenu from "../right-menu/right_menu.jsx";
-import { MainProps } from "../../types";
+import { arrayBackGroundImage } from "../const.js";
+import ChoicePlaces from "./choiсe-plaсes.jsx";
+import CSVDowland from "./csv_button.jsx";
+import RightMenu from "./right_menu.jsx";
+import { MainProps } from "../types";
 
 
 const Main = (props: MainProps) => {
