@@ -201,13 +201,13 @@ fieldset {
   background-position: 0 -9px;
 }
 
-.map__pin:not(.map__pin--main):hover::after,
-.map__pin:not(.map__pin--main):active::after,
-.map__pin--active:not(.map__pin--main)::after {
+.map__pin:not(.map__pin--main):not(.active):hover::after {
   box-shadow: 0 0 15px 15px rgba(22, 202, 31, 0.7);
-  border: none;
+
 }
 
+
+.map__pin:not(.map__pin--main):active::after,
 .map__pin:not(.map__pin--main):focus::after {
   border: none;
 }
@@ -218,14 +218,20 @@ fieldset {
   filter: none;
 }
 
+.active.map__pin::after {
+  border: none;
+}
 
-.map__pin:not(.map__pin--main):focus {
+.active {
   width: 30px;
   height: 30px;
   border: 2px solid orange;
   box-shadow: 0 0 15px 15px rgba(255, 86, 53, 0.7);
   background-color: white;
   z-index: 9;
+  outline: none;
+  -webkit-filter: none;
+  filter: none;
 }
 
 .map__pin:not(.map__pin--main):focus span {

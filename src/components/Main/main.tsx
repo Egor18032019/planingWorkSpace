@@ -44,8 +44,8 @@ const Main = (props: MainProps) => {
         />
         : ``}
       <RightMenu
-      places={places}
-      onPinClick={onPinClick}
+        places={places}
+        onPinClick={onPinClick}
       />
       {/* <!-- Карта рабочих мест --> */}
       <section className={`map ${!isActive ? `map--faded` : ``}`} >
@@ -60,6 +60,7 @@ const Main = (props: MainProps) => {
         />
         {/* <!-- Метки рабочих мест --> */}
         <Pins
+          activePlace={activePlace}
           onPinClick={onPinClick}
           places={places}
         />
