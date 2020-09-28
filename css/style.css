@@ -1076,7 +1076,6 @@ a.btn-primary:focus {
 /**
    * Карточка объявления
    */
-
 .map__card {
   position: absolute;
   z-index: 2;
@@ -1090,6 +1089,40 @@ a.btn-primary:focus {
 
   border-radius: 5px;
   background-color: #e6fcd4;
+}
+
+/* меню справа */
+.menu {
+  position: absolute;
+  z-index: 2;
+  top: 150px;
+  right: 20px;
+
+  padding: 10px 10px 20px;
+  width: 230px;
+
+  font-size: 12px;
+
+  border-radius: 5px;
+  background-color: #e6fcd4;
+}
+
+.menu-text {
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  background-color: inherit;
+  border: none;
+  color: #000000;
+}
+
+.menu-list_item {
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+  background-color: inherit;
+  border: none;
+  color: #000000;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .popup-form--disabled {

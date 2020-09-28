@@ -9,6 +9,7 @@ const PopupWrapped = withPopup(LeftPopup);
 import { arrayBackGroundImage } from "../../const.js";
 import ChoicePlaces from "../choiсe-plaсes/choiсe-plaсes.jsx";
 import CSVDowland from "../csv-button/csv_button.jsx";
+import RightMenu from "../right-menu/right_menu.jsx";
 import { MainProps } from "../../types";
 
 
@@ -42,6 +43,10 @@ const Main = (props: MainProps) => {
           onPinClick={onPinClick}
         />
         : ``}
+      <RightMenu
+      places={places}
+      onPinClick={onPinClick}
+      />
       {/* <!-- Карта рабочих мест --> */}
       <section className={`map ${!isActive ? `map--faded` : ``}`} >
         <MapPin
