@@ -23,7 +23,7 @@ const Main = (props: MainProps) => {
   return (
     <main>
       <div className="promo">
-        <h1 className="promo__title visually-hidden">Планировщик рабочих мест</h1>
+        <h1 className="promo__title visually-hidden">Планировщик рабочих мест.</h1>
         {isActive ?
           <div>
             <ChoicePlaces
